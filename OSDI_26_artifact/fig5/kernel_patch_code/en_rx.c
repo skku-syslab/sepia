@@ -756,8 +756,8 @@ static int mlx5e_alloc_rx_hd_mpwqe(struct mlx5e_rq *rq)
 	return 0;
 }
 
-#define CREATE_TRACE_POINTS 
-#include "diag/en_rx_tracepoint.h"
+#define CREATE_TRACE_POINTS // page 추적 코드
+#include "diag/en_rx_tracepoint.h" // page 추적 코드
 
 static int mlx5e_alloc_rx_mpwqe(struct mlx5e_rq *rq, u16 ix)
 {
@@ -791,7 +791,7 @@ static int mlx5e_alloc_rx_mpwqe(struct mlx5e_rq *rq, u16 ix)
 			goto err_unmap;
 		addr = page_pool_get_dma_addr(frag_page->page);
 		
-		// ===== page addresstracing =====
+		// ===== page 추적 코드 =====
 		if (rq->channel->cpu < 15 && rq->channel->cpu % 2 == 0) {
 			trace_mlx5_mpwqe_page_alloc(
 				rq->channel->cpu,

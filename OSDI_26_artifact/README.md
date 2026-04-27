@@ -77,7 +77,7 @@ Our hardware configurations used in the paper are:
 - patch kernel on 192.168.10.213
   ```bash
   cd /usr/src/OSDI_26_artifact/experiments/fig5
-  cp en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
+  cp kernel_patch_code/en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
 
   cd /usr/src/linux-6.6.41-default
   make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
@@ -86,11 +86,9 @@ Our hardware configurations used in the paper are:
 - run Figure 5(a),(b) on 192.168.10.213
   ```bash
   cd /usr/src/OSDI_26_artifact/experiments/fig5
-  ./enable_arfs_2.sh
-  ./one_flow_test.sh
-  ./two_flow_test.sh
+  ./scripts/0_run_all.sh
   ```
-  - check: `one_flow_1/mlx5_trace.log` and `two_flow_1/mlx5_trace.log`
+  - check: `plots/subfig_a.png` and `plots/subfig_b.png`
 
 - restore kernel patch on 192.168.10.213
   ```bash
