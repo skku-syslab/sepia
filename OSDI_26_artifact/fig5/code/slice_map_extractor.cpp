@@ -24,7 +24,7 @@
 // ---------------------------------------------------------------------------
 
 // Number of LLC slices (CHA units) on this system
-const int    N_SLICE  = 20;
+const int    N_SLICE  = 26;
 
 // Buffer size: 4 GiB backed by 4 GiB huge page
 const size_t BUF_SIZE = 4ULL << 30;
@@ -41,26 +41,32 @@ const int    N_REPS   = 10000;
 // PMU event strings — one per CHA slice on SPR (Emerald Rapids / swift1)
 // ---------------------------------------------------------------------------
 const char *names[N_SLICE] = {
-    "spr_unc_cha0::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha1::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha2::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha3::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha4::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha5::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha6::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha7::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha8::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha9::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha10::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha11::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha12::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha13::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha14::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha15::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha16::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha17::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha18::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
-    "spr_unc_cha19::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha0::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha1::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha2::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha3::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha4::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha5::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha6::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha7::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha8::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha9::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha10::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha11::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha12::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha13::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha14::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha15::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha16::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha17::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha18::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha19::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha20::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha21::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha22::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha23::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha24::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
+    "icx_unc_cha25::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
 };
 
 // ---------------------------------------------------------------------------
