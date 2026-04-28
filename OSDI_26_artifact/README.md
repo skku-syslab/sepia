@@ -99,6 +99,33 @@ Our hardware configurations used in the paper are:
   make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
   ```
 
+### Figure 9.
+
+- This is a simulation-based experiment and is machine- and kernel-agnostic.
+- Since running the full Tetris algorithm is time-consuming, a pre-generated dataset is provided under `dummy_data/` and is used by default.
+
+- run:
+  ```bash
+  cd /usr/src/OSDI_26_artifact/experiments/fig9
+  bash scripts/0_run_all.sh
+  ```
+  - check: `plots/figure.png`
+
+
+### Figure 10.
+
+- This is a simulation-based experiment and is machine- and kernel-agnostic.
+- Figure 10 reuses the Tetris block layout computed in Figure 9; the same `dummy_data/`-based mocking applies here as well.
+
+- run:
+  ```bash
+  cd /usr/src/OSDI_26_artifact/experiments/fig10
+  bash scripts/0_run_all.sh
+  ```
+  - check: `plots/subfigure_a.png` and `plots/subfigure_b.png`
+  - note: the violation ratio reported in the paper may differ slightly in practice, as it is sensitive to the chosen address range and the probabilistic nature of the Tetris layout process.
+
+
 ### Figure 13.
 
 - Kernel: both machines boot with `6.6.41-sepia`
