@@ -1,3 +1,21 @@
+// Sliding-window cache-occupancy analysis for Figure 5.
+//
+// This program reads per-CPU page-start physical addresses extracted from NIC
+// trace logs (see `py_script/process_trace.py`) and models LLC occupancy by
+// counting accesses per (set, slice). A "violation" is recorded when the
+// occupancy exceeds NUM_WAYS.
+//
+// Usage:
+//   ./bin/analyze_by_sliding.bin <subfigure_name>
+//
+// Inputs:
+//   data/subfig_<name>/page_start_address.<cpu_id>.txt
+//
+// Outputs (written under data/subfig_<name>/):
+//   - violation_ratio.bin   (double per step)
+//   - hist.bin              (uint16 histogram per step)
+//   - violation_summary.txt (average + count)
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -183,7 +201,7 @@ int main(int argc, char* argv[]) {
     std::vector<std::vector<uint16_t>> hist_record;
     std::vector<std::vector<uint64_t>> address_list_per_cpu;
     
-    // 파일 읽기
+    // Read per-CPU page-start-address traces.
     for (int cpu_id : cpu_ids) {
         std::ostringstream filename_ss;
         filename_ss << "data/subfig_" << subfigure_name 

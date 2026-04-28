@@ -1,3 +1,15 @@
+"""Parse NIC trace logs and extract page-start physical addresses per CPU.
+
+Usage:
+    python3 py_scripts/process_trace.py <subfigure_name>
+
+Input:
+    traces/subfig_<name>/mlx5_trace.log
+
+Outputs:
+    data/subfig_<name>/page_start_address.<cpu_id>.txt
+"""
+
 import sys
 import config
 import re
@@ -12,12 +24,12 @@ os.makedirs(output_dir, exist_ok=True)
 
 pattern = re.compile(
     r"""
-    ^.*?                               # 앞부분 전부 스킵
-    (?P<timestamp>\d+\.\d+):\s+        # timestamp (예: 86.592561)
-    \S+:\s+                            # 이벤트명 (mlx5_mpwqe_page_alloc) 후 콜론
-    cpu=(?P<cpu>\d+)\s+                # cpu=숫자
-    wqe_idx=(?P<wqe_idx>\d+)\s+        # wqe_idx=숫자
-    page_idx=(?P<page_idx>\d+)\s+      # page_idx=숫자
+    ^.*?                               # skip any leading text
+    (?P<timestamp>\d+\.\d+):\s+        # timestamp (e.g., 86.592561)
+    \S+:\s+                            # event name (e.g., mlx5_mpwqe_page_alloc) + ':'
+    cpu=(?P<cpu>\d+)\s+                # cpu=<number>
+    wqe_idx=(?P<wqe_idx>\d+)\s+        # wqe_idx=<number>
+    page_idx=(?P<page_idx>\d+)\s+      # page_idx=<number>
     phys_addr=(?P<phys_addr>0x[0-9a-fA-F]+) # phys_addr=0x...
     """,
     re.VERBOSE,

@@ -1,3 +1,16 @@
+"""Plot Figure 5 results.
+
+Usage:
+        python3 py_scripts/plot_result.py <subfigure_name>
+
+Inputs (produced by the C++ analyzer):
+        data/subfig_<name>/violation_ratio.bin
+        data/subfig_<name>/hist.bin
+
+Output:
+        plots/subfig_<name>.png
+"""
+
 import numpy as np
 import os
 import sys
@@ -23,12 +36,12 @@ hist_file_name = f"data/subfig_{subfigure_name}/hist.bin"
 raw_data = np.fromfile(hist_file_name, dtype=np.uint16)
 hist_data = raw_data.reshape((-1, HISTOGRAM_BINS))
 print(f"Shape: {hist_data.shape}")
-print(f"Data type: {hist_data.dtype}") # uint8 이어야 함
+print(f"Data type: {hist_data.dtype}")  # expected uint16 (matches C++ writer)
 
 ratio_list = hist_data / cache_struct_size
 
-mean_ratios = np.mean(ratio_list, axis=0) # 막대 높이
-std_ratios = np.std(ratio_list, axis=0)   # 에러바 길이
+mean_ratios = np.mean(ratio_list, axis=0) # bar height
+std_ratios = np.std(ratio_list, axis=0)   # error bar length
 plt.figure(figsize=(12, 6))
 
 threshold = hash_function.NUM_WAYS

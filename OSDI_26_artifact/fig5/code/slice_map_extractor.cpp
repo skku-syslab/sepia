@@ -1,3 +1,18 @@
+// Perf-based LLC slice mapping extractor (Figure 5).
+//
+// This program allocates a huge-page-backed buffer, probes addresses via a
+// flush+reload loop, and attributes LLC lookup misses to each CHA (LLC slice)
+// using uncore perf events. For each probed address it records (va, pa, slice)
+// to a CSV file.
+//
+// Output:
+//   outputs/slice_mapping.csv
+//
+// Notes:
+// - This tool is hardware/OS dependent (uncore event names, number of slices,
+//   perf permissions, huge page availability). The artifact pipeline typically
+//   uses `gen_dummy_slice_map.cpp` instead of running this extractor.
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -26,7 +41,7 @@
 // Number of LLC slices (CHA units) on this system
 const int    N_SLICE  = 26;
 
-// Buffer size: 4 GiB backed by 4 GiB huge page
+// Buffer size: 4 GiB backed by 1 GiB huge pages (requires 4 huge pages)
 const size_t BUF_SIZE = 4ULL << 30;
 
 // Measurement stride.
@@ -38,7 +53,8 @@ const size_t STRIDE   = 64;
 const int    N_REPS   = 10000;
 
 // ---------------------------------------------------------------------------
-// PMU event strings — one per CHA slice on SPR (Emerald Rapids / swift1)
+// PMU event strings — one per CHA slice.
+// Adjust these strings if libpfm uses different names on your system.
 // ---------------------------------------------------------------------------
 const char *names[N_SLICE] = {
     "icx_unc_cha0::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS",
@@ -158,7 +174,7 @@ int main(int argc, char **argv) {
     }
 
     // -----------------------------------------------------------------------
-    // 2. Allocate 1 GiB working buffer (single 1 GiB huge page)
+    // 2. Allocate a 4 GiB working buffer backed by 1 GiB huge pages
     // -----------------------------------------------------------------------
     Array = (uint64_t *)mmap(NULL, BUF_SIZE,
                               PROT_READ | PROT_WRITE,
@@ -218,8 +234,7 @@ int main(int argc, char **argv) {
     // -----------------------------------------------------------------------
     // 4. Scan: probe every STRIDE bytes and record (va, pa, slice)
     //
-    //    Results go to stdout as CSV; redirect with:
-    //      ./my_extractor.exe > slice_map.csv
+    //    Results are written to outputs/slice_mapping.csv.
     // -----------------------------------------------------------------------
     const uint64_t n_probes = BUF_SIZE / STRIDE;
     fprintf(stderr, "Probing %zu addresses (stride=%zu B, %d reps each)...\n",
@@ -240,7 +255,7 @@ int main(int argc, char **argv) {
 
         fprintf(output_fp, "%p,0x%012llx,%d\n", va, pa, slice);
 
-        // Progress report every 10000 probes
+        // Progress report every 1000 probes
         if ((idx + 1) % 1000 == 0)
             fprintf(stderr, "\r%zu / %zu (%.2f%%)", idx + 1, n_probes, ((double)(idx + 1) / n_probes)*100);
     }

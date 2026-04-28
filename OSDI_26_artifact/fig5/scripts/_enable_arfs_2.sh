@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# Enable ntuple and configure aRFS-related settings for the given NIC.
+# Defaults to interface `ens2np0`.
+
 intf=${1:-ens2np0}
 
 ethtool -K $intf ntuple on

@@ -1,3 +1,12 @@
+// Generate a synthetic (dummy) slice mapping CSV.
+//
+// This is used in the artifact path to avoid running the real perf-based slice
+// extractor (which is slow and system-dependent). Instead, it uses the already
+// recovered masks + base sequence to compute a slice number for each address.
+//
+// Output:
+//   outputs/slice_mapping.csv
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -76,6 +85,7 @@ inline int get_slice_num_single(uint64_t address_u64) {
 // ==========================================
 
 int main(int argc, char* argv[]) {
+    // Dummy physical base address; only used as an address generator seed.
     const uint64_t start_address = 0x101500000;
     const uint64_t size_working_set = 4*(1LL<<30); //4GB
 
@@ -87,7 +97,8 @@ int main(int argc, char* argv[]) {
     for(uint64_t offset=0; offset < size_working_set; offset += 64) {
         uint64_t pa = start_address + offset;
         int slice_num = get_slice_num_single(pa);
-        fprintf(output_fp, "0x%012lx,0x%012lx,%d\n", pa, pa, slice_num); // use dummy address
+        // Use dummy addresses: the synthetic VA equals PA in the CSV.
+        fprintf(output_fp, "0x%012lx,0x%012lx,%d\n", pa, pa, slice_num);
         
         if ((idx + 1) % 1000 == 0)
             fprintf(stderr, "\r%zu / %zu (%.2f%%)", idx + 1, n_probes, ((double)(idx + 1) / n_probes)*100);

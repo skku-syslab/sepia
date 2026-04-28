@@ -1,9 +1,11 @@
 set -e
 
-pip install tqdm matplotlib
+# Step 1: Install libpfm and allocate 1GiB huge pages used by the slice-map
+# extractor.
+
 ./scripts/_install_pfmlib.sh
 
-expect_num_hugepages=5 # 5GB
+expect_num_hugepages=5 # 5GiB (1GiB huge pages)
 echo $expect_num_hugepages | sudo tee /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages > /dev/null
 
 actual_num_hugepages=$(cat /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages)
