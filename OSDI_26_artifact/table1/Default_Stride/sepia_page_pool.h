@@ -1,5 +1,6 @@
-#ifndef MY_PAGE_POOL_H
-#define MY_PAGE_POOL_H
+// SPDX-License-Identifier: GPL-2.0
+#ifndef SEPIA_PAGE_POOL_H
+#define SEPIA_PAGE_POOL_H
 
 #include <linux/types.h>     // uint64_t, phys_addr_t
 #include <linux/mm_types.h>  // struct page
@@ -28,4 +29,4 @@ struct my_allocated_page_list {
 struct page *sepia_alloc(int);
 int check_page_number(struct page *);
 void make_page_available(struct page *);
-#endif /* MY_PAGE_POOL_H */
+#endif /* SEPIA_PAGE_POOL_H */

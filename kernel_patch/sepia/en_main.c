@@ -2442,7 +2442,7 @@ void mlx5e_trigger_napi_sched(struct napi_struct *napi)
 }
 
 
-extern int sysctl_test_create_flag_numa0;
+extern int sysctl_sepia_init_flag_numa0;
 extern void sepia_init(struct device* dev, int numa_id);
 
 
@@ -2491,10 +2491,10 @@ static int mlx5e_open_channel(struct mlx5e_priv *priv, int ix,
 
 	printk("mlx5e_open_channel : c->cpu(%u), net device(%s), dev_numa(%d), cpu_numa(%d)\n", c->cpu, c->netdev->name, dev_to_node(c->pdev), cpu_to_node(c->cpu));
 
-	if(c->cpu==0 && strcmp(c->netdev->name, "ens2np0") == 0 && sysctl_test_create_flag_numa0==1)
+	if(c->cpu==0 && strcmp(c->netdev->name, "ens2np0") == 0 && sysctl_sepia_init_flag_numa0==1)
 	{
 		// initialize the sepia based on the NUMA information
-		sysctl_test_create_flag_numa0 = 2;
+		sysctl_sepia_init_flag_numa0 = 2;
 		sepia_init(c->pdev, dev_to_node(c->pdev));
 		printk("mlx5e_open_channels : sepia_init complete \n");
 	}

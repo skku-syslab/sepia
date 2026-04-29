@@ -48,7 +48,7 @@ endif
 
 obj-y			:= filemap.o mempool.o oom_kill.o fadvise.o \
 			   maccess.o page-writeback.o folio-compat.o \
-			   my_page_pool.o \
+			   sepia_page_pool.o \
 			   readahead.o swap.o truncate.o vmscan.o shmem.o \
 			   util.o mmzone.o vmstat.o backing-dev.o \
 			   mm_init.o percpu.o slab_common.o \
@@ -63,7 +63,7 @@ page-alloc-$(CONFIG_SHUFFLE_PAGE_ALLOCATOR) += shuffle.o
 # Give 'memory_hotplug' its own module-parameter namespace
 memory-hotplug-$(CONFIG_MEMORY_HOTPLUG) += memory_hotplug.o
 
-obj-y += my_page_pool.o
+obj-y += sepia_page_pool.o
 
 obj-y += page-alloc.o
 obj-y += init-mm.o

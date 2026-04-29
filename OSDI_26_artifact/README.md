@@ -255,7 +255,7 @@ Our hardware configurations used in the paper are:
   - apply patch
     ```bash
     cd /usr/src/OSDI_26_artifact/experiments/fig16/Default_Stride
-    cp my_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
+    cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
     cd /usr/src/linux-6.6.41-sepia
     make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
     ```
@@ -276,7 +276,7 @@ Our hardware configurations used in the paper are:
 - restore sepia kernel patch
   ```bash
   cd /usr/src/OSDI_26_artifact/kernel_patch/sepia
-  cp my_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
+  cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
   cd /usr/src/linux-6.6.41-sepia
   make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
   ```
@@ -317,7 +317,7 @@ Our hardware configurations used in the paper are:
   - apply patch
     ```bash
     cd /usr/src/OSDI_26_artifact/experiments/table1/Default_Stride
-    cp my_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
+    cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
     cd /usr/src/linux-6.6.41-sepia
     make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
     ```
@@ -338,7 +338,7 @@ Our hardware configurations used in the paper are:
 - restore sepia kernel patch
   ```bash
   cd /usr/src/OSDI_26_artifact/kernel_patch/sepia
-  cp my_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
+  cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
   cd /usr/src/linux-6.6.41-sepia
   make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
   ```

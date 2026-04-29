@@ -549,7 +549,7 @@ mlx5e_copy_skb_header(struct mlx5e_rq *rq, struct sk_buff *skb,
 }
 
 
-#include <linux/my_page_pool.h>
+#include <linux/sepia_page_pool.h>
 
 static void
 mlx5e_free_rx_mpwqe(struct mlx5e_rq *rq, struct mlx5e_mpw_info *wi)
@@ -771,7 +771,7 @@ static int mlx5e_alloc_rx_hd_mpwqe(struct mlx5e_rq *rq)
 }
 
 
-extern int sysctl_test_create_flag_numa0;
+extern int sysctl_sepia_init_flag_numa0;
 
 // #define CREATE_TRACE_POINTS
 // #include "diag/en_rx_tracepoint.h"
@@ -801,7 +801,7 @@ static int mlx5e_alloc_rx_mpwqe(struct mlx5e_rq *rq, u16 ix)
 
 	frag_page = &wi->alloc_units.frag_pages[0];
 
-	if(sysctl_test_create_flag_numa0 == 2 && rq->channel->cpu %2 == 0)
+	if(sysctl_sepia_init_flag_numa0 == 2 && rq->channel->cpu %2 == 0)
 	{
 		for(i = 0; i < rq->mpwqe.pages_per_wqe; i++, frag_page++){
 			dma_addr_t addr;

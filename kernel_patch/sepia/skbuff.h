@@ -3469,7 +3469,7 @@ skb_page_unref(const struct sk_buff *skb, struct page *page, bool napi_safe)
 	put_page(page);
 }
 
-#include <linux/my_page_pool.h>
+#include <linux/sepia_page_pool.h>
 
 
 static inline void

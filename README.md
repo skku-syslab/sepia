@@ -97,8 +97,8 @@ cd OSDI_26_artifact/kernel_patch/sepia
 cp en_main.c en_rx.c /usr/src/linux-6.6.41-sepia/drivers/net/ethernet/mellanox/mlx5/core/
 mkdir -p /usr/src/linux-6.6.41-sepia/drivers/net/ethernet/mellanox/mlx5/core/diag
 cp en_rx_tracepoint.h /usr/src/linux-6.6.41-sepia/drivers/net/ethernet/mellanox/mlx5/core/diag/
-cp skbuff.h my_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
-cp my_page_pool.c Makefile /usr/src/linux-6.6.41-sepia/mm/
+cp skbuff.h sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
+cp sepia_page_pool.c Makefile /usr/src/linux-6.6.41-sepia/mm/
 
 # Start from the running kernel config
 cp /boot/config-$(uname -r) /usr/src/linux-6.6.41-sepia/.config
