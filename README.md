@@ -69,10 +69,16 @@ cd OSDI_26_artifact/kernel_patch/default
 cp en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
 mkdir -p /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/diag
 cp en_rx_tracepoint.h /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/diag/
-cp .config /usr/src/linux-6.6.41-default/
+
+# Start from the running kernel config
+cp /boot/config-$(uname -r) /usr/src/linux-6.6.41-default/.config
+
+cd /usr/src/linux-6.6.41-default
+scripts/config --set-str LOCALVERSION "-default"
+scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
+scripts/config --set-str SYSTEM_REVOCATION_KEYS ""
 
 # Build and Install
-cd /usr/src/linux-6.6.41-default
 make olddefconfig
 make -j$(nproc) bzImage modules
 make INSTALL_MOD_STRIP=1 modules_install
@@ -93,10 +99,16 @@ mkdir -p /usr/src/linux-6.6.41-sepia/drivers/net/ethernet/mellanox/mlx5/core/dia
 cp en_rx_tracepoint.h /usr/src/linux-6.6.41-sepia/drivers/net/ethernet/mellanox/mlx5/core/diag/
 cp skbuff.h my_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
 cp my_page_pool.c Makefile /usr/src/linux-6.6.41-sepia/mm/
-cp .config /usr/src/linux-6.6.41-sepia/
+
+# Start from the running kernel config
+cp /boot/config-$(uname -r) /usr/src/linux-6.6.41-sepia/.config
+
+cd /usr/src/linux-6.6.41-sepia
+scripts/config --set-str LOCALVERSION "-sepia"
+scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
+scripts/config --set-str SYSTEM_REVOCATION_KEYS ""
 
 # Build and Install
-cd /usr/src/linux-6.6.41-sepia
 make olddefconfig
 make -j$(nproc) bzImage modules
 make INSTALL_MOD_STRIP=1 modules_install
