@@ -51,7 +51,7 @@ std::map<int, int> get_num_pages_per_flow_table() {
     // Total expected memory / 4 kB per page / number of flows
     return {
         {'a', 5632/1},  // ~22 MB (16 MB feeding + 6 MB throttling), 1 flow
-        {'b', 9728/2},  // ~38 MB (32 MB feeding + 6 MB throttling), 2 flows
+        {'b', 9728/2},  // ~38 MB (32 MB feeding + 3 MB throttling * 2), 2 flows
     };
 }
 
