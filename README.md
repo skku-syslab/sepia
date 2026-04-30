@@ -63,7 +63,7 @@ The default kernel includes minimal patches to trace physical addresses for anal
 ```bash
 # Setup source tree
 cp -r linux-6.6.41 linux-6.6.41-default
-cd OSDI_26_artifact/kernel_patch/default
+cd sepia/kernel_patch/default
 
 # Apply baseline patches and configuration
 cp en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
@@ -91,7 +91,7 @@ The Sepia kernel implements the color-aware page allocator within the mm/ direct
 # Setup source tree
 cd /usr/src
 cp -r linux-6.6.41 linux-6.6.41-sepia
-cd OSDI_26_artifact/kernel_patch/sepia
+cd sepia/kernel_patch/sepia
 
 # Apply Sepia implementation and configuration
 cp en_main.c en_rx.c /usr/src/linux-6.6.41-sepia/drivers/net/ethernet/mellanox/mlx5/core/
