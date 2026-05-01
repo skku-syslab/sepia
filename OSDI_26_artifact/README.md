@@ -375,8 +375,15 @@ Our hardware configurations used in the paper are:
 
   cd /usr/src/sepia/OSDI_26_artifact/fig17/default
   sudo ./spdk/scripts/pkgdep.sh
+  bash ./spdk/configure
+  make -C ./spdk -j$(nproc)
+  ```
+
+  If you need a rebuild after the initial setup:
+  ```bash
+  cd /usr/src/sepia/OSDI_26_artifact/fig17/default
   make -C ./spdk clean
-  ./spdk/configure
+  bash ./spdk/configure
   make -C ./spdk -j$(nproc)
   ```
 

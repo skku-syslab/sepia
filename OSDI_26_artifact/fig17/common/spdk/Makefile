@@ -117,7 +117,7 @@ build_dir: mk/cc.mk
 include/spdk/config.h: mk/config.mk scripts/genconfig.py
 	$(Q)echo "#ifndef SPDK_CONFIG_H" > $@.tmp; \
 	echo "#define SPDK_CONFIG_H" >> $@.tmp; \
-	scripts/genconfig.py $(MAKEFLAGS) >> $@.tmp; \
+	python3 scripts/genconfig.py $(MAKEFLAGS) >> $@.tmp; \
 	echo "#endif /* SPDK_CONFIG_H */" >> $@.tmp; \
 	cmp -s $@.tmp $@ || mv $@.tmp $@ ; \
 	rm -f $@.tmp

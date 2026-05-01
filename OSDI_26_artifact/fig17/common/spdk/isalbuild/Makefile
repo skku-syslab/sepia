@@ -44,7 +44,7 @@ endif
 SUB_CC = $(patsubst %ccc-analyzer,$(DEFAULT_CC),$(CC))
 
 $(ISAL_DIR)/isa-l:
-	@ln -s $(ISAL_DIR)/include $(ISAL_DIR)/isa-l
+	@ln -sfn $(ISAL_DIR)/include $(ISAL_DIR)/isa-l
 
 all: $(ISAL_DIR)/isa-l
 	$(Q)$(MAKE) -C $(SPDK_ROOT_DIR)/isa-l all CC="$(SUB_CC)" $(REDIRECT)
