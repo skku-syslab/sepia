@@ -69,7 +69,7 @@ Our hardware configurations used in the paper are:
     - check: packet-occupied and LLC miss rate
 
 
-### Figure 5. (Help Needed)
+### Figure 5.
 
 - Kernel: both machines boot with `6.6.41-default`
 - Roles: `192.168.10.213` (server), `192.168.10.211` (client)
