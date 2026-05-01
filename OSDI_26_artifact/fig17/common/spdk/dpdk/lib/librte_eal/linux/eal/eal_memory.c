@@ -1826,7 +1826,7 @@ eal_hugepage_init(void)
 	/* if socket limits were specified, set them */
 	if (internal_config.force_socket_limits) {
 		unsigned int i;
-		for (i = 0; i < RTE_; i++) {
+		for (i = 0; i < RTE_MAX_NUMA_NODES; i++) {
 			uint64_t limit = internal_config.socket_limit[i];
 			if (limit == 0)
 				continue;
