@@ -220,7 +220,7 @@ Example:
 cat ~/.ssh/id_ed25519.pub | ssh sepia@192.168.10.211 "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 ```
 
-## 3. Run Toy-experiments
+## 3. Run Toy-experiments (with root)
 
 This section validates that both kernels boot correctly and run the same toy workload.
 
@@ -231,9 +231,11 @@ This section validates that both kernels boot correctly and run the same toy wor
    uname -r
    ```
    Expected: 6.6.41-default (or your baseline kernel string).
-3. Run the toy experiment:
+3. Run the toy experiment on server:
    ```
-   ./scripts/default_run_toy.sh
+   cd /usr/src/sepia/OSDI_26_artifact/toy_experiment/default
+   ./enable_arfs_2.sh
+   ./run_experiment.sh
    ```
 ### 3.2 Sepia kernel
 1. Set GRUB to the Sepia kernel preset (numa_cma=0:1G) and reboot.
@@ -242,9 +244,15 @@ This section validates that both kernels boot correctly and run the same toy wor
    uname -r
    ```
    Expected: 6.6.41-sepia.
-3. Run the toy experiment:
+3. pre-setup on client(192.168.10.211)
    ```
-   ./scripts/sepia_run_toy.sh
+   cd /usr/src/sepia/OSDI_26_artifact/toy_experiment/sepia
+   ./sepia_with_no_aRFS.sh
+   ```
+4. Run the toy experiment on server:
+   ```
+   cd /usr/src/sepia/OSDI_26_artifact/toy_experiment/sepia
+   ./run_experiment.sh
    ```
 
 

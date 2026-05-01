@@ -6,7 +6,7 @@ sleep 1
 ./enable_arfs_2.sh
 sleep 0.5
 
-echo 1 > /proc/sys/sepia_page_pool/test_create_flag_numa0
+echo 1 > /proc/sys/sepia_page_pool/sepia_init_flag_numa0
 
 ethtool -G ens2np0 rx 1024 tx 1024
 
