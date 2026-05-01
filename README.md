@@ -107,6 +107,7 @@ cd /usr/src/linux-6.6.41-sepia
 scripts/config --set-str LOCALVERSION "-sepia"
 scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
 scripts/config --set-str SYSTEM_REVOCATION_KEYS ""
+scripts/config --enable DMA_NUMA_CMA
 
 # Build and Install
 make olddefconfig
