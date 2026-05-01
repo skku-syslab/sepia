@@ -31,12 +31,12 @@ Our hardware configurations used in the paper are:
 - Roles: `192.168.10.213` (server), `192.168.10.211` (client)
 - Run (on server):
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig3/default
+    cd /usr/src/sepia/OSDI_26_artifact/fig3/default
     ./enable_arfs_2.sh
     ./run_all_tests.sh
     python3 extract_data.py
 
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig3/throttle
+    cd /usr/src/sepia/OSDI_26_artifact/fig3/throttle
     ./run_all_tests.sh
     python3 extract_data.py
     ```
@@ -47,7 +47,7 @@ Our hardware configurations used in the paper are:
 - Roles: `192.168.10.213` (server), `192.168.10.211` (client)
 - run Figure 4(a) (server-side)
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig4/a
+    cd /usr/src/sepia/OSDI_26_artifact/fig4/a
     ./enable_arfs_2.sh
     ./default_one_flow.sh
     python3 extract_data.py
@@ -61,7 +61,7 @@ Our hardware configurations used in the paper are:
     ```
     - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig4/b_c
+    cd /usr/src/sepia/OSDI_26_artifact/fig4/b_c
     ./enable_arfs_2.sh
     ./run_all_tests.sh
     python3 extract_data.py
@@ -76,7 +76,7 @@ Our hardware configurations used in the paper are:
 
 - patch kernel on 192.168.10.213
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig5
+  cd /usr/src/sepia/OSDI_26_artifact/fig5
   cp kernel_patch_code/en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
 
   cd /usr/src/linux-6.6.41-default
@@ -85,7 +85,7 @@ Our hardware configurations used in the paper are:
 
 - run Figure 5(a),(b) on 192.168.10.213
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig5
+  cd /usr/src/sepia/OSDI_26_artifact/fig5
   ./scripts/0_run_all.sh
   ```
   - check: `plots/subfig_a.png` and `plots/subfig_b.png`
@@ -106,7 +106,7 @@ Our hardware configurations used in the paper are:
 
 - run:
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig9
+  cd /usr/src/sepia/OSDI_26_artifact/fig9
   bash scripts/0_run_all.sh
   ```
   - check: `plots/figure.png`
@@ -119,7 +119,7 @@ Our hardware configurations used in the paper are:
 
 - run:
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig10
+  cd /usr/src/sepia/OSDI_26_artifact/fig10
   bash scripts/0_run_all.sh
   ```
   - check: `plots/subfigure_a.png` and `plots/subfigure_b.png`
@@ -133,13 +133,13 @@ Our hardware configurations used in the paper are:
 
 - pre-setup on 192.168.10.211
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig13
+  cd /usr/src/sepia/OSDI_26_artifact/fig13
   ./sepia_with_no_aRFS.sh
   ```
 
 - run Figure 13(a),(b) on 192.168.10.213
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig13/sepia/iperf_sar/
+  cd /usr/src/sepia/OSDI_26_artifact/fig13/sepia/iperf_sar/
   ./sepia_init.sh
   ./run_all_tests.sh
   python3 extract_data.py
@@ -147,7 +147,7 @@ Our hardware configurations used in the paper are:
 
 - run Figure 13(c) on 192.168.10.213
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig13/sepia/iperf_sar_missrate/
+  cd /usr/src/sepia/OSDI_26_artifact/fig13/sepia/iperf_sar_missrate/
   ./run_all_tests.sh
   python3 extract_data.py
   ```
@@ -162,13 +162,13 @@ Our hardware configurations used in the paper are:
 
 - pre-setup on 192.168.10.211
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig14
+  cd /usr/src/sepia/OSDI_26_artifact/fig14
   ./sepia_with_no_aRFS.sh
   ```
 
 - run on 192.168.10.213
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig14
+  cd /usr/src/sepia/OSDI_26_artifact/fig14
   ./sepia_init.sh
   ./run_all_tests.sh
   python3 extract_data.py
@@ -185,14 +185,14 @@ Our hardware configurations used in the paper are:
 
 - run default phase on 192.168.10.213
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig15/iperf_sar/default
+  cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar/default
   ./enable_arfs_2.sh
   ./run_all_tests.sh 10
   python3 extract_data.py
   python3 extract_data.py --aggregate .
   cat flow_averages.csv
 
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig15/iperf_sar_missrate/default
+  cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar_missrate/default
   ./run_all_tests.sh 10
   python3 extract_data.py
   python3 extract_data.py --aggregate .
@@ -206,20 +206,20 @@ Our hardware configurations used in the paper are:
 
 - pre-setup on 192.168.10.211
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig15/
+  cd /usr/src/sepia/OSDI_26_artifact/fig15/
   ./sepia_with_no_aRFS.sh
   ```
 
 - run sepia phase on 192.168.10.213
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig15/iperf_sar/sepia
+  cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar/sepia
   ./sepia_init.sh
   ./run_all_tests.sh 10
   python3 extract_data.py
   python3 extract_data.py --aggregate .
   cat flow_averages.csv
 
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig15/iperf_sar_missrate/sepia
+  cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar_missrate/sepia
   ./run_all_tests.sh 10
   python3 extract_data.py
   python3 extract_data.py --aggregate .
@@ -243,7 +243,7 @@ Our hardware configurations used in the paper are:
     ```
   - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig16/Default_Ring_Thrtt
+    cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Ring_Thrtt
     ./enable_arfs_2.sh
     ./run_all_tests.sh
     python3 extract_data.py
@@ -254,19 +254,19 @@ Our hardware configurations used in the paper are:
   - kernel: patch and boot `6.6.41-sepia`
   - apply patch
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig16/Default_Stride
+    cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Stride
     cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
     cd /usr/src/linux-6.6.41-sepia
     make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
     ```
   - pre-setup on 192.168.10.211
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig16/Default_Stride
+    cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Stride
     ./Default_Stride_setting.sh
     ```
   - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig16/Default_Stride
+    cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Stride
     ./sepia_init.sh
     ./run_all_tests.sh
     python3 extract_data.py
@@ -290,7 +290,7 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-default`
   - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/table1/Default
+    cd /usr/src/sepia/OSDI_26_artifact/table1/Default
     ./enable_arfs_2.sh
     ./four_flow_test.sh
     cat four_flow_1/imc_read_test.log
@@ -305,7 +305,7 @@ Our hardware configurations used in the paper are:
     ```
   - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/table1/Default_Ring_Thrtt
+    cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Ring_Thrtt
     ./enable_arfs_2.sh
     ./four_flow_test.sh
     cat four_flow_1/imc_read_test.log
@@ -316,19 +316,19 @@ Our hardware configurations used in the paper are:
   - kernel: patch and boot `6.6.41-sepia`
   - apply patch
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/table1/Default_Stride
+    cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Stride
     cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
     cd /usr/src/linux-6.6.41-sepia
     make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
     ```
   - pre-setup on 192.168.10.211
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/table1/Default_Stride
+    cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Stride
     ./Default_Stride_setting.sh
     ```
   - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/table1/Default_Stride
+    cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Stride
     ./sepia_init.sh
     ./four_flow_test.sh
     cat four_flow_1/imc_read_test.log
@@ -347,12 +347,12 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-sepia`
   - pre-setup on 192.168.10.211
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/table1/Sepia
+    cd /usr/src/sepia/OSDI_26_artifact/table1/Sepia
     ./sepia_with_no_aRFS.sh
     ```
   - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/table1/Sepia
+    cd /usr/src/sepia/OSDI_26_artifact/table1/Sepia
     ./sepia_init.sh
     ./four_flow_test.sh
     cat four_flow_1/imc_read_test.log
@@ -369,11 +369,11 @@ Our hardware configurations used in the paper are:
 
 - prepare SPDK link and build (once)
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig17
+  cd /usr/src/sepia/OSDI_26_artifact/fig17
   ln -sfn ../common/spdk default/spdk
   ln -sfn ../common/spdk sepia/spdk
 
-  cd /usr/src/sepia/OSDI_26_artifact/experiments/fig17/default
+  cd /usr/src/sepia/OSDI_26_artifact/fig17/default
   sudo ./spdk/scripts/pkgdep.sh
   make -C ./spdk clean
   ./spdk/configure
@@ -384,14 +384,14 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-default`
   - target setup on 192.168.10.211
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig17/default
+    cd /usr/src/sepia/OSDI_26_artifact/fig17/default
     cp target_config.sh config.sh
     ./prepare_env.sh
     ./run_target.sh 0xFFFFFFFFF
     ```
   - host run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig17/default
+    cd /usr/src/sepia/OSDI_26_artifact/fig17/default
     cp host_config.sh config.sh
     ./prepare_env.sh
     ./my_spdk_test.sh
@@ -404,7 +404,7 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-sepia`
   - target setup on 192.168.10.211
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig17/sepia
+    cd /usr/src/sepia/OSDI_26_artifact/fig17/sepia
     cp target_config.sh config.sh
     ./sepia_with_no_aRFS.sh
     ./prepare_env.sh
@@ -412,7 +412,7 @@ Our hardware configurations used in the paper are:
     ```
   - host run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig17/sepia
+    cd /usr/src/sepia/OSDI_26_artifact/fig17/sepia
     cp host_config.sh config.sh
     ./sepia_init.sh
     ./prepare_env.sh
@@ -482,7 +482,7 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-default`
   - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig18/default
+    cd /usr/src/sepia/OSDI_26_artifact/fig18/default
     ./run_nginx_POST.sh
     python3 parse_results_POST.py nginx_result_xxxxxxxx_xxxxxx/
     ```
@@ -492,12 +492,12 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-sepia`
   - pre-setup on 192.168.10.211
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig18/sepia
+    cd /usr/src/sepia/OSDI_26_artifact/fig18/sepia
     ./sepia_with_no_aRFS.sh
     ```
   - run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig18/sepia
+    cd /usr/src/sepia/OSDI_26_artifact/fig18/sepia
     ./sepia_with_no_aRFS.sh
     ./run_nginx_POST.sh
     python3 parse_results_POST.py nginx_result_xxxxxxxx_xxxxxx/
@@ -532,13 +532,13 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-default`
   - server setup on 192.168.10.211
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig19/default
+    cd /usr/src/sepia/OSDI_26_artifact/fig19/default
     ./enable_arfs_2.sh
     ./running_memcached.sh
     ```
   - client run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig19/default
+    cd /usr/src/sepia/OSDI_26_artifact/fig19/default
     ./memcached_100_set.sh
     ./parse_memcached.sh memcached_set_results_xxxxxxxx_xxxxxx/
     cat memcached_set_results_xxxxxxxx_xxxxxx/summary_memcached.csv
@@ -549,13 +549,13 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-sepia`
   - server setup on 192.168.10.211
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig19/sepia
+    cd /usr/src/sepia/OSDI_26_artifact/fig19/sepia
     ./sepia_server.sh
     ./running_memcached.sh
     ```
   - client setup and run on 192.168.10.213
     ```bash
-    cd /usr/src/sepia/OSDI_26_artifact/experiments/fig19/sepia
+    cd /usr/src/sepia/OSDI_26_artifact/fig19/sepia
     ./sepia_client.sh
     ./memcached_100_set.sh
     ./parse_memcached.sh memcached_set_results_xxxxxxxx_xxxxxx/
