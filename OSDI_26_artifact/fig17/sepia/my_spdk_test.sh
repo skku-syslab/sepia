@@ -71,7 +71,7 @@ for bs in "${block_sizes[@]}"; do
                     
                     if [ -z "$core_list_sar" ]; then core_list_sar="${core_id}"; else core_list_sar="${core_list_sar},${core_id}"; fi
 
-                    spdk/build/examples/perf \
+                    ../spdk/build/examples/perf \
                         -c ${core_mask} -r "${TRID}" -q ${qd} -o ${bs} \
                         -w ${rw_mode} -t ${test_duration} -L \
                         > "${output_dir}/perf_${prefix}_flow${i}.txt" 2>&1 &

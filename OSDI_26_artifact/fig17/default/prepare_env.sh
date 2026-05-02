@@ -8,7 +8,7 @@ echo 0 | tee /proc/sys/kernel/sched_autogroup_enabled
 
 
 
-spdk/scripts/setup.sh
+../spdk/scripts/setup.sh
 echo 4096 | sudo tee /proc/sys/vm/nr_hugepages
 
 source config.sh
