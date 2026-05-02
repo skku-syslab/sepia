@@ -5,8 +5,12 @@
 #include <linux/types.h>
 #include <linux/mm_types.h>
 
-
+// LLC sliced architecture-aware coloring:
+// use the upper 5 set-index bits (lower bits overlap with page offset),
+// so memory is partitioned into 32 page groups (2^5), each sharing the same upper set index.
 #define PAGE_GROUP 32
+
+// Implementation parameter: pages tracked per group (bitmap granularity / pool sizing).
 #define PAGES_PER_GROUP 128 // 4KB * 128 = 0.5MB ,4KB * 256 = 1MB
 #define CPU_NUM_TOTAL 36
 #define CPU_NUM_PER_NUMA 18
