@@ -12,7 +12,5 @@ spdk/scripts/setup.sh
 echo 4096 | sudo tee /proc/sys/vm/nr_hugepages
 
 source config.sh
-echo -n "trtype:TCP traddr:$PEER_IP_ADDR adrfam:IPv4 trsvcid:4420 subnqn:nqn.2020-07.com.midhul:null0" > config/ram_disk_addr.txt
-echo -n "trtype:TCP traddr:$PEER_IP_ADDR adrfam:IPv4 trsvcid:4420 subnqn:nqn.2020-07.com.midhul:nvme0" > config/ssd_addr.txt
 
 echo "Configuration complete"

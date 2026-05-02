@@ -367,24 +367,14 @@ Our hardware configurations used in the paper are:
 - This experiment uses shared `common/spdk` for both `default` and `sepia`.
 - rebuild SPDK before running experiments.
 
-- prepare SPDK link and build (once)
+- prepare SPDK link and build on both machines (once)
   ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/fig17
-  ln -sfn ../common/spdk default/spdk
-  ln -sfn ../common/spdk sepia/spdk
-
-  cd /usr/src/sepia/OSDI_26_artifact/fig17/default
-  sudo ./spdk/scripts/pkgdep.sh
-  bash ./spdk/configure
-  make -C ./spdk -j$(nproc)
-  ```
-
-  If you need a rebuild after the initial setup:
-  ```bash
-  cd /usr/src/sepia/OSDI_26_artifact/fig17/default
-  make -C ./spdk clean
-  bash ./spdk/configure
-  make -C ./spdk -j$(nproc)
+  cd /usr/src/sepia
+  git submodule update --init --recursive
+  cd OSDI_26_artifact/fig17/spdk
+  sudo scripts/pkgdep.sh
+  ./configure
+  make -j"$(nproc)"
   ```
 
 - run `default` phase
