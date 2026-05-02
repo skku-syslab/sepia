@@ -1,6 +1,0 @@
-*.o
-*.so
-*.a
-*~
-ipsec_MB_testapp
-ipsec_perf
