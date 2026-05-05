@@ -112,8 +112,6 @@ void sepia_init(struct device* dev, int numa_id)
 	
 	sepia_page_list->memory_start = virt_to_phys(base_vaddr);
 	sepia_page_list->memory_end = virt_to_phys(base_vaddr + total_size);
-
-
 	size_t global_idx = 0;
 	
 	if(numa_id==0)
@@ -125,19 +123,14 @@ void sepia_init(struct device* dev, int numa_id)
 				for (j = 0; j < PAGE_GROUP; j++) {
 					void *vaddr = base_vaddr + global_idx * PAGE_SIZE;
 					struct page *pg = virt_to_page(vaddr);
-					
 					dma_addr_t dmaaddr = base_dma + global_idx * PAGE_SIZE;
-					
 					pg->dma_addr = dmaaddr;
-		
 					sepia_page_list->page_sequence[cpu][j][i] = pg;
-					
 					global_idx++;
 				}
 			}
 		}
 	}
-	
 	return;
 }
 EXPORT_SYMBOL_GPL(sepia_init);
@@ -147,20 +140,15 @@ EXPORT_SYMBOL_GPL(sepia_init);
 int check_page_number(struct page *page)
 {
 	unsigned long phys;
-	
 	if (!sepia_page_list || !page)
 		return -1;
-		
 	phys = page_to_phys(page);
-	
+
 	if (phys >= sepia_page_list->memory_start && phys <= sepia_page_list->memory_end)
 		return 1;
-	
 	return -1; 
 }
 EXPORT_SYMBOL_GPL(check_page_number);
-
-
 
 
 struct page* sepia_alloc(int cpu_num)
@@ -172,11 +160,9 @@ struct page* sepia_alloc(int cpu_num)
         cur_group = (start_group + i) % PAGE_GROUP;
         for (mask = 0; mask < MASKS_PER_GROUP; mask++) {
             uint64_t word = sepia_page_list->avail_mask[cpu_num][cur_group][mask];
-
             if (word != 0) {  
                 bit = __ffs(word);
                 page_idx = mask * BITS_PER_MASK + bit;
-        
                 struct page *allocated_page = sepia_page_list->page_sequence[cpu_num][cur_group][page_idx];
                 sepia_page_list->avail_mask[cpu_num][cur_group][mask] = word & ~(1ULL << bit);
                 sepia_page_list->prev_group_per_cpu[cpu_num] = (cur_group + 1) % PAGE_GROUP;
@@ -202,7 +188,6 @@ void make_page_available(struct page *page)
 	const size_t pages_per_cpu = PAGE_GROUP * PAGES_PER_GROUP;
 	
 	phys = page_to_phys(page);
-	
 	page_offset = (phys - sepia_page_list->memory_start) >> PAGE_SHIFT;
 	
 	cpu_num = (page_offset / pages_per_cpu) * 2;
