@@ -87,6 +87,35 @@ make install
 ### 4. Build and Install the Sepia Kernel
 The Sepia kernel implements the color-aware page allocator within the mm/ directory and integrates it with the NIC driver.
 
+#### 4.0 Set `PAGE_GROUP` (system-dependent)
+
+Sepia uses page coloring based on LLC set-index bits that do not overlap with the 4KiB page offset. The number of usable colors (page groups) depends on the CPU's LLC configuration, so you may need to update `PAGE_GROUP` before building the Sepia kernel.
+
+- `PAGE_GROUP` is defined in `kernel_patch/sepia/sepia_page_pool.h`.
+- Run `arch_scripts/print_llc_configuration.py` on your system and use the printed `Page Groups` value:
+   ```bash
+   cd /usr/src/sepia
+   python3 arch_scripts/print_llc_configuration.py
+   ```
+   Example:
+   ```
+   Sets per Slice              : 2048
+   Page Groups                 : 32
+   ```
+   In this case, set `#define PAGE_GROUP 32`.
+
+   Another example (system-dependent):
+   ```
+   Sets per Slice              : 4096
+   Page Groups                 : 64
+   ```
+   In this case, set `#define PAGE_GROUP 64`.
+
+Note: With 4KiB pages and 64B cache lines, `Page Groups = (Sets per Slice) / 64`.
+
+#### 4.1 Apply Sepia patches and build
+After setting `PAGE_GROUP`, apply the Sepia implementation and build/install the kernel as follows.
+
 ```bash
 # Setup source tree
 cd /usr/src
