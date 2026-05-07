@@ -114,7 +114,33 @@ Sepia uses page coloring based on LLC set-index bits that do not overlap with th
 
 Note: With 4KiB pages and 64B cache lines, `Page Groups = (Sets per Slice) / 64`.
 
-#### 4.1 Apply Sepia patches and build
+Note: Sepia currently assumes a fixed 16MiB page pool per CPU.
+
+If `PAGE_GROUP` changes and you still want to keep the same 16MiB pool size, update `PAGES_PER_GROUP` in `kernel_patch/sepia/sepia_page_pool.h` accordingly:
+`PAGES_PER_GROUP = (16MiB / 4KiB) / PAGE_GROUP = 4096 / PAGE_GROUP`
+Examples:
+- `PAGE_GROUP=32` -> `PAGES_PER_GROUP=128`
+- `PAGE_GROUP=64` -> `PAGES_PER_GROUP=64`
+
+
+#### 4.1 Set other system-dependent parameters
+- **CPU counts (`kernel_patch/sepia/sepia_page_pool.h`)**
+  - `CPU_NUM_TOTAL`: total number of CPUs.
+  - `CPU_NUM_PER_NUMA`: number of CPUs used per NUMA node
+  - Update these values to match your machine topology before building the Sepia kernel.
+  
+  - You can check these values with:
+      ```bash
+      nproc
+      lscpu -e=cpu,node | awk 'NR>1 {cnt[$2]++} END {for (n in cnt) print "NUMA node", n ":", cnt[n], "CPUs"}'
+      ```
+- **NIC interface name (`/OSDI_26_artifact/scripts/enable_arfs_2.sh`)**
+  - `ens2np0` as the default interface (e.g., `intf=${1:-ens2np0}`).
+  - If your NIC name is different, edit the default interface name in this script.
+
+
+
+#### 4.2 Apply Sepia patches and build
 After setting `PAGE_GROUP`, apply the Sepia implementation and build/install the kernel as follows.
 
 ```bash
@@ -265,7 +291,7 @@ This section validates that both kernels boot correctly and run the same toy wor
 3. Run the toy experiment on server:
    ```
    cd /usr/src/sepia/OSDI_26_artifact/toy_experiment/default
-   ./enable_arfs_2.sh
+   /proc/sys/sepia_page_pool/sepia_init_flag_numa0
    ./run_experiment.sh
    ```
 ### 3.2 Sepia kernel

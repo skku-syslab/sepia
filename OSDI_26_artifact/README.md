@@ -32,7 +32,7 @@ Our hardware configurations used in the paper are:
 - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig3/default
-    ./enable_arfs_2.sh
+    /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./run_all_tests.sh
     python3 extract_data.py
 
@@ -48,7 +48,7 @@ Our hardware configurations used in the paper are:
 - run Figure 4(a) (server-side)
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig4/a
-    ./enable_arfs_2.sh
+    /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./default_one_flow.sh
     python3 extract_data.py
     ```
@@ -62,7 +62,7 @@ Our hardware configurations used in the paper are:
     - run on 192.168.10.213
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig4/b_c
-    ./enable_arfs_2.sh
+    /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./run_all_tests.sh
     python3 extract_data.py
     ```
@@ -186,7 +186,7 @@ Our hardware configurations used in the paper are:
 - run default phase on 192.168.10.213
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar/default
-  ./enable_arfs_2.sh
+  /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
   ./run_all_tests.sh 10
   python3 extract_data.py
   python3 extract_data.py --aggregate .
@@ -244,7 +244,7 @@ Our hardware configurations used in the paper are:
   - run on 192.168.10.213
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Ring_Thrtt
-    ./enable_arfs_2.sh
+    /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./run_all_tests.sh
     python3 extract_data.py
     ```
@@ -291,7 +291,7 @@ Our hardware configurations used in the paper are:
   - run on 192.168.10.213
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default
-    ./enable_arfs_2.sh
+    /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./four_flow_test.sh
     cat four_flow_1/imc_read_test.log
     ```
@@ -306,7 +306,7 @@ Our hardware configurations used in the paper are:
   - run on 192.168.10.213
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Ring_Thrtt
-    ./enable_arfs_2.sh
+    /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./four_flow_test.sh
     cat four_flow_1/imc_read_test.log
     ```
@@ -530,7 +530,7 @@ Our hardware configurations used in the paper are:
   - server setup on 192.168.10.211
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/default
-    ./enable_arfs_2.sh
+    /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./running_memcached.sh
     ```
   - client run on 192.168.10.213

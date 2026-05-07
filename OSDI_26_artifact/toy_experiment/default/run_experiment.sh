@@ -1,6 +1,6 @@
 #! /bin/sh
 
-./enable_arfs_2.sh
+/usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
 
 sleep 1
 
