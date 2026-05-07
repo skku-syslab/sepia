@@ -12,7 +12,8 @@ Implemented in the Linux kernel and evaluated on SPDK, Nginx, and Memcached, **S
 This repository includes the Sepia implementation for the Linux kernel and the reproduction scripts for the OSDI'26 Artifact Evaluation:
 
 - `kernel_patch/`: Contains the Sepia core implementation (Sepia Manager and Sepia Allocator) and the baseline configuration for Linux kernel 6.6.
-- `experiments/`: Includes automated scripts to reproduce evaluation results presented in the paper, including microbenchmarks and real-world applications. 
+- `OSDI_26_artifact/`: Includes automated scripts for reproducing the evaluation results presented in the OSDI'26 paper, including microbenchmarks and real-world applications.
+- `arch_scripts/`: Includes automated scripts for determining system-dependent parameter values, such as `PAGE_GROUP`. 
 
 
 ## Getting Started Guide
