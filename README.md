@@ -13,7 +13,7 @@ This repository includes the Sepia implementation for the Linux kernel and the r
 
 - `kernel_patch/`: Contains the Sepia core implementation (Sepia Manager and Sepia Allocator) and the baseline configuration for Linux kernel 6.6.
 - `OSDI_26_artifact/`: Includes automated scripts for reproducing the evaluation results presented in the OSDI'26 paper, including microbenchmarks and real-world applications.
-- `arch_scripts/`: Includes automated scripts for determining system-dependent parameter values, such as `PAGE_GROUP`. 
+- `arch_scripts/`: Includes automated scripts for determining system-dependent parameter values (e.g., \#page groups). 
 
 
 ## Getting Started Guide
