@@ -76,12 +76,12 @@ export SERVER_IP
     - check: LLC miss rate
 
 - Run Figure 4(b),(c):
-    - Set descriptor 2048 (on client)
+    - Set descriptor 2048 (on client):
     ```bash
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 2048 tx 2048
     ```
-    - Run (on server)
+    - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig4/b_c
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -557,7 +557,7 @@ export SERVER_IP
     memtier_benchmark --version
     ```
 
-- run `default` phase
+- Run `default` phase
   - Kernel: both machines boot with `6.6.41-default`
   - memcached setup (on client):
     ```bash
