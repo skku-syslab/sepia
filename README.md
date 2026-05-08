@@ -270,10 +270,10 @@ cat ~/.ssh/id_ed25519.pub | ssh sepia@192.168.10.211 "mkdir -p ~/.ssh && chmod 7
 
 This section validates that both kernels boot correctly and run the same toy workload.
 
-Note: Before running toy experiments, set your environment-specific values in
+Note: Before running toy experiments, configure your environment-specific values in
 `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh`.
 
-- `SSH_USER`: remote login user for client machine
+- `SSH_USER`: remote SSH username for the client machine
 - `CLIENT_IP`: client machine IP
 - `SERVER_IP`: server machine IP
 - `IFACE`: NIC interface name (e.g., `ens2np0`)
