@@ -16,7 +16,7 @@ ssh "${SSH_USER}@${CLIENT_IP}" -tt "iperf3 -c ${SERVER_IP} -t 30 -P 1 -p 5205 -Z
 sleep 2
 sar -P 0,2,4,6 1 27 > receiver_util.log &
 
-timeout -s SIGINT 25s /home/sanghyun/WorkSpace/imc_read_test/cha_read_test_nic_to_llc.exe > imc_read_test.log &
+timeout -s SIGINT 25s /usr/src/sepia/OSDI_26_artifact/table1/tools/measure_dram_traffic.bin > imc_read_test.log &
 
 sleep 27
 wait
