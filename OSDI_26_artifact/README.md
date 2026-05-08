@@ -180,7 +180,7 @@ Our hardware configurations used in the paper are:
 
 ### Figure 15.
 
-- Run both default and sepia experiments; run default first.
+- Run both default and Sepia experiments; run default first.
 - Kernel (default phase): both machines boot with `6.6.41-default`
 - Roles: `192.168.10.213` (server), `192.168.10.211` (client)
 
@@ -203,7 +203,7 @@ Our hardware configurations used in the paper are:
   - note: adjust repetition count with `./run_all_tests.sh N`
 
 
-- Kernel (sepia phase): both machines boot with `6.6.41-sepia`
+- Kernel (Sepia phase): both machines boot with `6.6.41-sepia`
 
 - pre-setup on `192.168.10.211`
   ```bash
@@ -211,7 +211,7 @@ Our hardware configurations used in the paper are:
   ./sepia_with_no_aRFS.sh
   ```
 
-- run sepia phase on `192.168.10.213`
+- run Sepia phase on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar/sepia
   ./sepia_init.sh
@@ -275,7 +275,7 @@ Our hardware configurations used in the paper are:
     ```
   - check: throughput-per-core
 
-- restore sepia kernel patch
+- restore Sepia kernel patch
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/kernel_patch/sepia
   cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
@@ -338,7 +338,7 @@ Our hardware configurations used in the paper are:
     ```
   - check: `total_bw`
 
-- restore sepia kernel patch
+- restore Sepia kernel patch
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/kernel_patch/sepia
   cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
@@ -400,7 +400,7 @@ Our hardware configurations used in the paper are:
     ```
   - check: `AvgThroughput(MiB/s)`
 
-- run `sepia` phase
+- run `Sepia` phase
   - kernel: both machines boot with `6.6.41-sepia`
   - target setup on `192.168.10.211`
     ```bash
@@ -488,7 +488,7 @@ Our hardware configurations used in the paper are:
     ```
   - check: `Avg Gbps`
 
-- run `sepia` phase
+- run `Sepia` phase
   - kernel: both machines boot with `6.6.41-sepia`
   - pre-setup on `192.168.10.211`
     ```bash
@@ -545,7 +545,7 @@ Our hardware configurations used in the paper are:
     ```
   - check: `AvgBandwidth(KB/s)`
 
-- run `sepia` phase
+- run `Sepia` phase
   - kernel: both machines boot with `6.6.41-sepia`
   - server setup on `192.168.10.211`
     ```bash
