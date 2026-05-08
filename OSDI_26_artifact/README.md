@@ -22,7 +22,8 @@ Our hardware configurations used in the paper are:
 ## 2. Experiments (with root)
 
 
-(If you skipped the toy experiments) Note: Before running the artifact scripts, configure your environment-specific values in
+(If you skipped the toy experiments)  
+Note: Before running the artifact scripts, configure your environment-specific values in
 `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh`.
 
 - `SSH_USER`: remote SSH username for the client machine
