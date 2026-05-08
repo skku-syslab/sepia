@@ -18,15 +18,15 @@ This repository includes the Sepia implementation for the Linux kernel and the r
 
 ## Getting Started Guide
 
-Sepia has been successfully tested on systems equipped with Intel Ice Lake or Emerald Rapids processors and NVIDIA ConnectX-6 NICs, running Ubuntu 20.04 with Linux kernel 6.6.41. Our evaluation requires two physical machines, a client and a server. You must perform the kernel installation steps on both machines to ensure the entire testbed is consistent.
+**Sepia** has been successfully tested on systems equipped with Intel Ice Lake or Emerald Rapids processors and NVIDIA ConnectX-6 NICs, running Ubuntu 20.04 with Linux kernel 6.6.41. Our evaluation requires two physical machines, a client and a server. You must perform the kernel installation steps on both machines to ensure the entire testbed is consistent.
 
 This guide consists of three parts:
 
-1. **Build and install the default kernel (baseline) and the Sepia kernel**
+1. Build and install the default kernel (baseline) and the Sepia kernel
 
 2. Configure passwordless SSH between two machines
 
-3. Run toy experiments
+3. Run toy-experiments
 
 
 ## 1. Build and Install Kernels (on BOTH Machines) (with root)
