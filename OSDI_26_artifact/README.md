@@ -55,7 +55,7 @@ Our hardware configurations used in the paper are:
     - check: LLC miss rate
 
 - run Figure 4(b),(c)
-    - set descriptor 2048 on 192.168.10.211
+    - set descriptor 2048 on `192.168.10.211`
     ```bash
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 2048 tx 2048
@@ -75,7 +75,7 @@ Our hardware configurations used in the paper are:
 - Kernel: both machines boot with `6.6.41-default`
 - Roles: `192.168.10.213` (server), `192.168.10.211` (client)
 
-- patch kernel on 192.168.10.213
+- patch kernel on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig5
   cp kernel_patch_code/en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
@@ -84,14 +84,14 @@ Our hardware configurations used in the paper are:
   make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
   ```
 
-- run Figure 5(a),(b) on 192.168.10.213
+- run Figure 5(a),(b) on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig5
   ./scripts/0_run_all.sh
   ```
   - check: `plots/subfig_a.png` and `plots/subfig_b.png`
 
-- restore kernel patch on 192.168.10.213
+- restore kernel patch on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/kernel_patch/default
   cp en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
@@ -132,13 +132,13 @@ Our hardware configurations used in the paper are:
 - Kernel: both machines boot with `6.6.41-sepia`
 - Roles: `192.168.10.213` (server), `192.168.10.211` (client)
 
-- pre-setup on 192.168.10.211
+- pre-setup on `192.168.10.211`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig13
   ./sepia_with_no_aRFS.sh
   ```
 
-- run Figure 13(a),(b) on 192.168.10.213
+- run Figure 13(a),(b) on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig13/sepia/iperf_sar/
   ./sepia_init.sh
@@ -146,7 +146,7 @@ Our hardware configurations used in the paper are:
   python3 extract_data.py
   ```
 
-- run Figure 13(c) on 192.168.10.213
+- run Figure 13(c) on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig13/sepia/iperf_sar_missrate/
   ./run_all_tests.sh
@@ -161,13 +161,13 @@ Our hardware configurations used in the paper are:
 - Kernel: both machines boot with `6.6.41-sepia`
 - Roles: `192.168.10.213` (server), `192.168.10.211` (client)
 
-- pre-setup on 192.168.10.211
+- pre-setup on `192.168.10.211`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig14
   ./sepia_with_no_aRFS.sh
   ```
 
-- run on 192.168.10.213
+- run on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig14
   ./sepia_init.sh
@@ -184,7 +184,7 @@ Our hardware configurations used in the paper are:
 - Kernel (default phase): both machines boot with `6.6.41-default`
 - Roles: `192.168.10.213` (server), `192.168.10.211` (client)
 
-- run default phase on 192.168.10.213
+- run default phase on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar/default
   /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -205,13 +205,13 @@ Our hardware configurations used in the paper are:
 
 - Kernel (sepia phase): both machines boot with `6.6.41-sepia`
 
-- pre-setup on 192.168.10.211
+- pre-setup on `192.168.10.211`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig15/
   ./sepia_with_no_aRFS.sh
   ```
 
-- run sepia phase on 192.168.10.213
+- run sepia phase on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar/sepia
   ./sepia_init.sh
@@ -243,7 +243,7 @@ Our hardware configurations used in the paper are:
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 256 tx 256
     ```
-  - run on 192.168.10.213
+  - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Ring_Thrtt
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -261,12 +261,12 @@ Our hardware configurations used in the paper are:
     cd /usr/src/linux-6.6.41-sepia
     make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
     ```
-  - pre-setup on 192.168.10.211
+  - pre-setup on `192.168.10.211`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Stride
     ./Default_Stride_setting.sh
     ```
-  - run on 192.168.10.213
+  - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Stride
     ./sepia_init.sh
@@ -290,7 +290,7 @@ Our hardware configurations used in the paper are:
 
 - run `Default`
   - kernel: both machines boot with `6.6.41-default`
-  - run on 192.168.10.213
+  - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -306,7 +306,7 @@ Our hardware configurations used in the paper are:
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 256 tx 256
     ```
-  - run on 192.168.10.213
+  - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Ring_Thrtt
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -324,12 +324,12 @@ Our hardware configurations used in the paper are:
     cd /usr/src/linux-6.6.41-sepia
     make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
     ```
-  - pre-setup on 192.168.10.211
+  - pre-setup on `192.168.10.211`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Stride
     ./Default_Stride_setting.sh
     ```
-  - run on 192.168.10.213
+  - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Stride
     ./sepia_init.sh
@@ -348,12 +348,12 @@ Our hardware configurations used in the paper are:
 
 - run `Sepia`
   - kernel: both machines boot with `6.6.41-sepia`
-  - pre-setup on 192.168.10.211
+  - pre-setup on `192.168.10.211`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Sepia
     ./sepia_with_no_aRFS.sh
     ```
-  - run on 192.168.10.213
+  - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Sepia
     ./sepia_init.sh
@@ -382,14 +382,14 @@ Our hardware configurations used in the paper are:
 
 - run `default` phase
   - kernel: both machines boot with `6.6.41-default`
-  - target setup on 192.168.10.211
+  - target setup on `192.168.10.211`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig17/default
     cp target_config.sh config.sh
     ./prepare_env.sh
     ./run_target.sh 0xFFFFFFFFF
     ```
-  - host run on 192.168.10.213
+  - host run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig17/default
     cp host_config.sh config.sh
@@ -402,7 +402,7 @@ Our hardware configurations used in the paper are:
 
 - run `sepia` phase
   - kernel: both machines boot with `6.6.41-sepia`
-  - target setup on 192.168.10.211
+  - target setup on `192.168.10.211`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig17/sepia
     cp target_config.sh config.sh
@@ -410,7 +410,7 @@ Our hardware configurations used in the paper are:
     ./prepare_env.sh
     ./run_target.sh 0xFFFFFFFFF
     ```
-  - host run on 192.168.10.213
+  - host run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig17/sepia
     cp host_config.sh config.sh
@@ -432,18 +432,18 @@ Our hardware configurations used in the paper are:
 - Workload: POST requests with 2MB/4MB payloads from `wrk` to `nginx`
 
 - install dependencies
-  - on 192.168.10.211
+  - on `192.168.10.211`
     ```bash
     sudo apt update
     sudo apt install -y nginx
     ```
-  - on 192.168.10.213
+  - on `192.168.10.213`
     ```bash
     sudo apt update
     sudo apt install -y wrk
     ```
 
-- configure nginx on 192.168.10.211 (required)
+- configure nginx on `192.168.10.211` (required)
   - edit `/etc/nginx/sites-available/default`
     - in the `server { ... }` block, add:
       - `client_max_body_size 0;`
@@ -480,7 +480,7 @@ Our hardware configurations used in the paper are:
 
 - run `default` phase
   - kernel: both machines boot with `6.6.41-default`
-  - run on 192.168.10.213
+  - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig18/default
     ./run_nginx_POST.sh
@@ -490,12 +490,12 @@ Our hardware configurations used in the paper are:
 
 - run `sepia` phase
   - kernel: both machines boot with `6.6.41-sepia`
-  - pre-setup on 192.168.10.211
+  - pre-setup on `192.168.10.211`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig18/sepia
     ./sepia_with_no_aRFS.sh
     ```
-  - run on 192.168.10.213
+  - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig18/sepia
     ./sepia_with_no_aRFS.sh
@@ -512,12 +512,12 @@ Our hardware configurations used in the paper are:
 - Workload: memtier sends SET requests to memcached
 
 - install dependencies
-  - on 192.168.10.211 (server)
+  - on `192.168.10.211` (server)
     ```bash
     sudo apt update
     sudo apt install -y memcached
     ```
-  - on 192.168.10.213 (client)
+  - on `192.168.10.213` (client)
     ```bash
     sudo apt update
     sudo apt install -y memtier-benchmark
@@ -530,13 +530,13 @@ Our hardware configurations used in the paper are:
 
 - run `default` phase
   - kernel: both machines boot with `6.6.41-default`
-  - server setup on 192.168.10.211
+  - server setup on `192.168.10.211`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/default
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./running_memcached.sh
     ```
-  - client run on 192.168.10.213
+  - client run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/default
     ./memcached_100_set.sh
@@ -547,13 +547,13 @@ Our hardware configurations used in the paper are:
 
 - run `sepia` phase
   - kernel: both machines boot with `6.6.41-sepia`
-  - server setup on 192.168.10.211
+  - server setup on `192.168.10.211`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/sepia
     ./sepia_server.sh
     ./running_memcached.sh
     ```
-  - client setup and run on 192.168.10.213
+  - client setup and run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/sepia
     ./sepia_client.sh
