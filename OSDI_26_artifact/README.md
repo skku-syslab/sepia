@@ -60,7 +60,7 @@ Our hardware configurations used in the paper are:
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 2048 tx 2048
     ```
-    - run on 192.168.10.213
+    - run on `192.168.10.213`
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig4/b_c
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -238,7 +238,7 @@ Our hardware configurations used in the paper are:
 
 - run `Default + Ring Throttling`
   - kernel: both machines boot with `6.6.41-default`
-  - pre-setup on 192.168.10.211
+  - pre-setup on `192.168.10.211`
     ```bash
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 256 tx 256
@@ -301,7 +301,7 @@ Our hardware configurations used in the paper are:
 
 - run `Default w/Ring-Thrtt`
   - kernel: both machines boot with `6.6.41-default`
-  - pre-setup on 192.168.10.211
+  - pre-setup on `192.168.10.211`
     ```bash
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 256 tx 256
