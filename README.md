@@ -291,13 +291,13 @@ export SSH_USER
 export CLIENT_IP
 export SERVER_IP
 ```
-### 3.1 Baseline (default kernel)
+### 3.1 Default kernel (Baseline)
 1. Set GRUB to the default kernel and reboot.
 2. Verify the running kernel:
    ```bash
    uname -r
    ```
-   Expected: 6.6.41-default (or your baseline kernel string).
+   Expected: `6.6.41-default` (or your baseline kernel string).
 3. Run the toy experiment on server:
    ```
    cd /usr/src/sepia/OSDI_26_artifact/toy_experiment/default
@@ -311,7 +311,7 @@ export SERVER_IP
    uname -r
    ```
    Expected: `6.6.41-sepia`.
-3. pre-setup on client(`192.168.10.211`)
+3. Pre-setup on client:
    ```
    cd /usr/src/sepia/OSDI_26_artifact/toy_experiment/sepia
    ./sepia_with_no_aRFS.sh
