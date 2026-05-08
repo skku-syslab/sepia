@@ -215,8 +215,8 @@ Assume:
 - remote user in scripts = `<client_user>` (replace with your account)
 
 Before running commands below, replace all placeholders:
-- `<server_ip>` with your server machine IP
-- `<client_ip>` with your client machine IP
+- `<server_ip>` with your server machine IP address
+- `<client_ip>` with your client machine IP address
 - `<client_user>` with your client login account
 
 Example values (do not copy as-is):
@@ -274,8 +274,8 @@ Note: Before running toy experiments, configure your environment-specific values
 `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh`.
 
 - `SSH_USER`: remote SSH username for the client machine
-- `CLIENT_IP`: client machine IP
-- `SERVER_IP`: server machine IP
+- `CLIENT_IP`: client machine IP address
+- `SERVER_IP`: server machine IP address
 - `IFACE`: NIC interface name (e.g., `ens2np0`)
 ```bash
 #!/bin/sh
