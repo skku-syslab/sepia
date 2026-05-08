@@ -4,44 +4,34 @@
 
 **Sepia** minimizes LLC misses by leveraging a deeper understanding of sliced LLC architecture through its **Sepia** Manager, which constructs per-core colored page pools, and the **Sepia** Allocator, which employs a low-conflict, stride-1 allocation pattern.
 
-Implemented in the Linux kernel and evaluated on SPDK, Nginx, and Memcached, **Sepia** achieves up to 1.51x higher throughput than the default Linux stack and saturates a 200Gbps link using 2.5 fewer CPU cores.
+While maintaining low LLC miss rates, **Sepia** achieves up to 1.51× higher throughput and saturates a 200Gbps link using 2.5 fewer CPU cores than the default Linux network stack.
 
 
 ## Repository Overview
 
 This repository includes the Sepia implementation for the Linux kernel and the reproduction scripts for the OSDI'26 Artifact Evaluation:
 
-- `kernel_patch/`: Contains the Sepia core implementation (Sepia Manager and Sepia Allocator) and the baseline configuration for Linux kernel 6.6.
+- `kernel_patch/`: Contains the Sepia core implementation (Sepia Manager and Sepia Allocator) and the baseline configuration for Linux kernel 6.6.41.
 - `OSDI_26_artifact/`: Includes automated scripts for reproducing the evaluation results presented in the OSDI'26 paper, including microbenchmarks and real-world applications.
 - `arch_scripts/`: Includes automated scripts for determining system-dependent parameter values (e.g., \#page groups). 
 
 
 ## Getting Started Guide
 
-We assume a testbed consisting of two physical machines directly connected via a 200Gbps link to focus on CPU-bottleneck scenarios. Both machines are required to (1) be equipped with Intel Ice Lake processors to leverage the sliced LLC architecture, (2) have an NVIDIA ConnectX-6 (200Gbps) NIC installed , and (3) run Ubuntu 20.04 with Linux kernel 6.6.
+Sepia has been successfully tested on systems equipped with Intel Ice Lake or Emerald Rapids processors and NVIDIA ConnectX-6 NICs, running Ubuntu 20.04 with Linux kernel 6.6.41. Our evaluation requires two physical machines, a client and a server. You must perform the kernel installation steps on both machines to ensure the entire testbed is consistent.
 
 This guide consists of three parts:
-1. **Build and Install the Sepia Kernel and Default Kernel**
 
-   Compile the Linux kernel 6.6 with Sepia modifications and enable the Contiguous Memory Allocator (CMA).
+1. **Build and install the default kernel (baseline) and the Sepia kernel**
 
-2. Configure Passwordless SSH Between Two Machines
+2. Configure passwordless SSH between two machines
 
-3. Run Toy-experiments
-
-
+3. Run toy experiments
 
 
 ## 1. Build and Install Kernels (on BOTH Machines) (with root)
 
-Our evaluation requires two physical machines connected via a 200Gbps link. You must perform the following installation steps on both machines to ensure the entire testbed is consistent.
-
-This repository contains source code for Sepia (Manager, Allocator, and NIC driver modifications) based on Linux kernel 6.6.41.
-
-- Baseline: Install the Default kernel (with minimal tracing patches).
-- Evaluation: Install the Sepia-patched kernel.
-
-  Note: For each machine, we recommend building the kernels in /usr/src to maintain a consistent environment.
+We recommend placing the kernel sources in `/usr/src` to maintain a consistent environment.
 
 
 **(Don't forget to be root)**
@@ -135,13 +125,10 @@ Examples:
       lscpu -e=cpu,node | awk 'NR>1 {cnt[$2]++} END {for (n in cnt) print "NUMA node", n ":", cnt[n], "CPUs"}'
       ```
 - **NIC interface name**
-  - `ens2np0` as the default interface
-  - If your NIC name is different, edit the default interface name in:
-   `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh` (`IFACE`)
+  - We use `ens2np0` as the default NIC interface name in our setup. If your interface name is different, please update it in:
    `/usr/src/sepia/kernel_patch/sepia/en_main.c` (`SEPIA_NETDEV_NAME`)
-  - Artifact scripts read `IFACE` from `common_env.sh`, so script-side NIC changes are managed in one place.
-  - The kernel-side Sepia initialization path also checks `SEPIA_NETDEV_NAME`, so this must match your NIC name as well.
-
+   `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh` (`IFACE`)   
+  - The kernel-side Sepia initialization path checks `SEPIA_NETDEV_NAME`, so it must match your NIC interface name. Also, our artifact scripts read `IFACE` from `common_env.sh`, so script-side NIC interface changes are managed in one place.
 
 
 
