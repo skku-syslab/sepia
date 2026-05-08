@@ -182,6 +182,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="numa_cma=0:1G"
 ```
 
 - **Option B: Default kernel (baseline)**
+
 Standard configuration without CMA reservation.
 ```bash
 GRUB_DEFAULT="1>Ubuntu, with Linux 6.6.41-default"
