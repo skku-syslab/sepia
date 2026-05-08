@@ -22,10 +22,10 @@ Our hardware configurations used in the paper are:
 ## 2. Experiments (with root)
 
 
-Note: Before running toy experiments, set your environment-specific values in
+Note: Before running the artifact scripts, configure your environment-specific values in
 `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh`.
 
-- `SSH_USER`: remote login user for client machine
+- `SSH_USER`: remote SSH username for the client machine
 - `CLIENT_IP`: client machine IP
 - `SERVER_IP`: server machine IP
 - `IFACE`: NIC interface name (e.g., `ens2np0`)
