@@ -51,7 +51,6 @@ export SERVER_IP
 ### Figure 3.
 
 - Kernel: both machines boot with `6.6.41-default`
-- Roles: `192.168.10.213` (server), `192.168.10.211` (client)
 - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig3/default
@@ -67,8 +66,7 @@ export SERVER_IP
 ### Figure 4.
 
 - Kernel: both machines boot with `6.6.41-default`
-- Roles: `192.168.10.213` (server), `192.168.10.211` (client)
-- run Figure 4(a) (server-side)
+- Run Figure 4(a) (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig4/a
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -77,13 +75,13 @@ export SERVER_IP
     ```
     - check: LLC miss rate
 
-- run Figure 4(b),(c)
-    - set descriptor 2048 on `192.168.10.211`
+- Run Figure 4(b),(c):
+    - Set descriptor 2048 (on client)
     ```bash
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 2048 tx 2048
     ```
-    - run on `192.168.10.213`
+    - Run (on server)
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig4/b_c
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -96,9 +94,7 @@ export SERVER_IP
 ### Figure 5.
 
 - Kernel: both machines boot with `6.6.41-default`
-- Roles: `192.168.10.213` (server), `192.168.10.211` (client)
-
-- patch kernel on `192.168.10.213`
+- Patch kernel (on server):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig5
   cp kernel_patch_code/en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
@@ -107,7 +103,7 @@ export SERVER_IP
   make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
   ```
 
-- run Figure 5(a),(b) on `192.168.10.213`
+- Run Figure 5(a),(b) (on server):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig5
   ./scripts/0_run_all.sh
@@ -127,7 +123,7 @@ export SERVER_IP
         ./tools/libpfm/lib/libpfm.a
     ```
 
-- restore kernel patch on `192.168.10.213`
+- Restore kernel patch (on server):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/kernel_patch/default
   cp en_rx.c /usr/src/linux-6.6.41-default/drivers/net/ethernet/mellanox/mlx5/core/
@@ -141,7 +137,7 @@ export SERVER_IP
 - This is a simulation-based experiment and is machine- and kernel-agnostic.
 - Since running the full Tetris algorithm is time-consuming, a pre-generated dataset is provided under `dummy_data/` and is used by default.
 
-- run:
+- Run:
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig9
   bash scripts/0_run_all.sh
@@ -154,27 +150,25 @@ export SERVER_IP
 - This is a simulation-based experiment and is machine- and kernel-agnostic.
 - Figure 10 reuses the Tetris block layout computed in Figure 9; the same `dummy_data/`-based mocking applies here as well.
 
-- run:
+- Run:
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig10
   bash scripts/0_run_all.sh
   ```
   - check: `plots/subfigure_a.png` and `plots/subfigure_b.png`
-  - note: the violation ratio reported in the paper may differ slightly in practice, as it is sensitive to the chosen address range and the probabilistic nature of the Tetris layout process.
+  - Note: The violation ratio reported in the paper may differ slightly in practice, as it is sensitive to the chosen address range and the probabilistic nature of the Tetris layout process.
 
 
 ### Figure 13.
 
 - Kernel: both machines boot with `6.6.41-sepia`
-- Roles: `192.168.10.213` (server), `192.168.10.211` (client)
-
-- pre-setup on `192.168.10.211`
+- Pre-setup (on client):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig13
   ./sepia_with_no_aRFS.sh
   ```
 
-- run Figure 13(a),(b) on `192.168.10.213`
+- Run Figure 13(a),(b) (on server):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig13/sepia/iperf_sar/
   ./sepia_init.sh
@@ -182,7 +176,7 @@ export SERVER_IP
   python3 extract_data.py
   ```
 
-- run Figure 13(c) on `192.168.10.213`
+- Run Figure 13(c) (on server):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig13/sepia/iperf_sar_missrate/
   ./run_all_tests.sh
@@ -195,15 +189,13 @@ export SERVER_IP
 ### Figure 14.
 
 - Kernel: both machines boot with `6.6.41-sepia`
-- Roles: `192.168.10.213` (server), `192.168.10.211` (client)
-
-- pre-setup on `192.168.10.211`
+- Pre-setup (on client):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig14
   ./sepia_with_no_aRFS.sh
   ```
 
-- run on `192.168.10.213`
+- Run (on server):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig14
   ./sepia_init.sh
@@ -218,9 +210,7 @@ export SERVER_IP
 
 - Run both default and Sepia experiments; run default first.
 - Kernel (default phase): both machines boot with `6.6.41-default`
-- Roles: `192.168.10.213` (server), `192.168.10.211` (client)
-
-- run default phase on `192.168.10.213`
+- Run the default phase (on server):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar/default
   /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -240,14 +230,13 @@ export SERVER_IP
 
 
 - Kernel (Sepia phase): both machines boot with `6.6.41-sepia`
-
-- pre-setup on `192.168.10.211`
+- Pre-setup (on client):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig15/
   ./sepia_with_no_aRFS.sh
   ```
 
-- run Sepia phase on `192.168.10.213`
+- Run the Sepia phase (on server):
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/fig15/iperf_sar/sepia
   ./sepia_init.sh
@@ -270,16 +259,14 @@ export SERVER_IP
 
 - Use Figure 3 and Figure 13 results for Default and Sepia baselines.
 - Run only `Default + Ring Throttling` and `Default + Stride-1`.
-- Roles: `192.168.10.213` (server), `192.168.10.211` (client)
-
-- run `Default + Ring Throttling`
-  - kernel: both machines boot with `6.6.41-default`
-  - pre-setup on `192.168.10.211`
+- Run `Default + Ring Throttling`
+  - Kernel: both machines boot with `6.6.41-default`
+  - Pre-setup (on client):
     ```bash
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 256 tx 256
     ```
-  - run on `192.168.10.213`
+  - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Ring_Thrtt
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -288,21 +275,21 @@ export SERVER_IP
     ```
   - check: throughput-per-core
 
-- run `Default + Stride-1`
-  - kernel: patch and boot `6.6.41-sepia`
-  - apply patch
+- Run `Default + Stride-1`
+  - Kernel: patch and boot `6.6.41-sepia`
+  - Apply patch:
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Stride
     cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
     cd /usr/src/linux-6.6.41-sepia
     make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
     ```
-  - pre-setup on `192.168.10.211`
+  - Pre-setup (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Stride
     ./Default_Stride_setting.sh
     ```
-  - run on `192.168.10.213`
+  - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig16/Default_Stride
     ./sepia_init.sh
@@ -311,7 +298,7 @@ export SERVER_IP
     ```
   - check: throughput-per-core
 
-- restore Sepia kernel patch
+- Restore Sepia kernel patch:
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/kernel_patch/sepia
   cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
@@ -333,11 +320,9 @@ export SERVER_IP
   - `tools/libpfm/examples/event_info.txt` is generated by `tools/prepare_table1_tools.sh` (it runs `tools/_install_pfmlib.sh` internally); reference it to find the proper IMC PMU/event name, then rebuild with `./tools/_compile.sh`.
 
 - Run four modes: `Default`, `Default w/Ring-Thrtt`, `Default w/Stride-1`, `Sepia`
-- Roles: `192.168.10.213` (server), `192.168.10.211` (client)
-
-- run `Default`
-  - kernel: both machines boot with `6.6.41-default`
-  - run on `192.168.10.213`
+- Run `Default`
+  - Kernel: both machines boot with `6.6.41-default`
+  - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -346,14 +331,14 @@ export SERVER_IP
     ```
   - check: `total_bw`
 
-- run `Default w/Ring-Thrtt`
-  - kernel: both machines boot with `6.6.41-default`
-  - pre-setup on `192.168.10.211`
+- Run `Default w/Ring-Thrtt`
+  - Kernel: both machines boot with `6.6.41-default`
+  - Pre-setup (on client):
     ```bash
     . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
     ethtool -G $IFACE rx 256 tx 256
     ```
-  - run on `192.168.10.213`
+  - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Ring_Thrtt
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
@@ -362,21 +347,21 @@ export SERVER_IP
     ```
   - check: `total_bw`
 
-- run `Default w/Stride-1`
-  - kernel: patch and boot `6.6.41-sepia`
-  - apply patch
+- Run `Default w/Stride-1`
+  - Kernel: patch and boot `6.6.41-sepia`
+  - Apply patch:
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Stride
     cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
     cd /usr/src/linux-6.6.41-sepia
     make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
     ```
-  - pre-setup on `192.168.10.211`
+  - Pre-setup (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Stride
     ./Default_Stride_setting.sh
     ```
-  - run on `192.168.10.213`
+  - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Default_Stride
     ./sepia_init.sh
@@ -385,7 +370,7 @@ export SERVER_IP
     ```
   - check: `total_bw`
 
-- restore Sepia kernel patch
+- Restore Sepia kernel patch:
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/kernel_patch/sepia
   cp sepia_page_pool.h /usr/src/linux-6.6.41-sepia/include/linux/
@@ -393,14 +378,14 @@ export SERVER_IP
   make -j$(nproc) bzImage && make -j$(nproc) modules && make INSTALL_MOD_STRIP=1 modules_install && make install
   ```
 
-- run `Sepia`
-  - kernel: both machines boot with `6.6.41-sepia`
-  - pre-setup on `192.168.10.211`
+- Run `Sepia`
+  - Kernel: both machines boot with `6.6.41-sepia`
+  - Pre-setup (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Sepia
     ./sepia_with_no_aRFS.sh
     ```
-  - run on `192.168.10.213`
+  - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/table1/Sepia
     ./sepia_init.sh
@@ -413,11 +398,10 @@ export SERVER_IP
 
 ### Figure 17.
 
-- Roles: `192.168.10.211` (target), `192.168.10.213` (host)
 - This experiment uses shared `common/spdk` for both `default` and `sepia`.
-- rebuild SPDK before running experiments.
+- Rebuild SPDK before running experiments.
 
-- prepare SPDK link and build on both machines (once)
+- Prepare SPDK link and build on both machines (once)
   ```bash
   cd /usr/src/sepia
   git submodule update --init --recursive
@@ -427,16 +411,16 @@ export SERVER_IP
   make -j"$(nproc)"
   ```
 
-- run `default` phase
-  - kernel: both machines boot with `6.6.41-default`
-  - target setup on `192.168.10.211`
+- Run `default` phase
+  - Kernel: both machines boot with `6.6.41-default`
+  - Target setup (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig17/default
     cp target_config.sh config.sh
     ./prepare_env.sh
     ./run_target.sh 0xFFFFFFFFF
     ```
-  - host run on `192.168.10.213`
+  - Run the host scripts (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig17/default
     cp host_config.sh config.sh
@@ -447,9 +431,9 @@ export SERVER_IP
     ```
   - check: `AvgThroughput(MiB/s)`
 
-- run `Sepia` phase
-  - kernel: both machines boot with `6.6.41-sepia`
-  - target setup on `192.168.10.211`
+- Run `Sepia` phase
+  - Kernel: both machines boot with `6.6.41-sepia`
+  - Target setup (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig17/sepia
     cp target_config.sh config.sh
@@ -457,7 +441,7 @@ export SERVER_IP
     ./prepare_env.sh
     ./run_target.sh 0xFFFFFFFFF
     ```
-  - host run on `192.168.10.213`
+  - Run the host scripts (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig17/sepia
     cp host_config.sh config.sh
@@ -475,22 +459,21 @@ export SERVER_IP
 
 ### Figure 18.
 
-- Roles: `192.168.10.211` (server, nginx), `192.168.10.213` (client, wrk)
 - Workload: POST requests with 2MB/4MB payloads from `wrk` to `nginx`
 
-- install dependencies
-  - on `192.168.10.211`
+- Install dependencies
+  - On client:
     ```bash
     sudo apt update
     sudo apt install -y nginx
     ```
-  - on `192.168.10.213`
+  - On server:
     ```bash
     sudo apt update
     sudo apt install -y wrk
     ```
 
-- configure nginx on `192.168.10.211` (required)
+- Configure nginx (on client) (required)
   - edit `/etc/nginx/sites-available/default`
     - in the `server { ... }` block, add:
       - `client_max_body_size 0;`
@@ -525,9 +508,9 @@ export SERVER_IP
     ps -eo pid,psr,comm | grep nginx
     ```
 
-- run `default` phase
-  - kernel: both machines boot with `6.6.41-default`
-  - run on `192.168.10.213`
+- Run `default` phase
+  - Kernel: both machines boot with `6.6.41-default`
+  - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig18/default
     ./run_nginx_POST.sh
@@ -535,14 +518,14 @@ export SERVER_IP
     ```
   - check: `Avg Gbps`
 
-- run `Sepia` phase
-  - kernel: both machines boot with `6.6.41-sepia`
-  - pre-setup on `192.168.10.211`
+- Run `Sepia` phase
+  - Kernel: both machines boot with `6.6.41-sepia`
+  - Pre-setup (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig18/sepia
     ./sepia_with_no_aRFS.sh
     ```
-  - run on `192.168.10.213`
+  - Run (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig18/sepia
     ./sepia_with_no_aRFS.sh
@@ -555,35 +538,34 @@ export SERVER_IP
 
 ### Figure 19.
 
-- Roles: `192.168.10.211` (server, memcached), `192.168.10.213` (client, memtier)
 - Workload: memtier sends SET requests to memcached
 
-- install dependencies
-  - on `192.168.10.211` (server)
+- Install dependencies
+  - On client (memcached):
     ```bash
     sudo apt update
     sudo apt install -y memcached
     ```
-  - on `192.168.10.213` (client)
+  - On server (memtier):
     ```bash
     sudo apt update
     sudo apt install -y memtier-benchmark
     ```
-  - verify
+  - Verify
     ```bash
     memcached -h | head -n 1
     memtier_benchmark --version
     ```
 
 - run `default` phase
-  - kernel: both machines boot with `6.6.41-default`
-  - server setup on `192.168.10.211`
+  - Kernel: both machines boot with `6.6.41-default`
+  - memcached setup (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/default
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./running_memcached.sh
     ```
-  - client run on `192.168.10.213`
+  - Run memtier (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/default
     ./memcached_100_set.sh
@@ -592,15 +574,15 @@ export SERVER_IP
     ```
   - check: `AvgBandwidth(KB/s)`
 
-- run `Sepia` phase
-  - kernel: both machines boot with `6.6.41-sepia`
-  - server setup on `192.168.10.211`
+- Run `Sepia` phase
+  - Kernel: both machines boot with `6.6.41-sepia`
+  - memcached setup (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/sepia
     ./sepia_server.sh
     ./running_memcached.sh
     ```
-  - client setup and run on `192.168.10.213`
+  - memtier setup and run it (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/sepia
     ./sepia_client.sh
