@@ -114,6 +114,19 @@ export SERVER_IP
   ```
   - check: `plots/subfig_a.png` and `plots/subfig_b.png`
 
+- Note (only if you run the real perf-based slice-map extractor): `code/slice_map_extractor.cpp` uses uncore perf events that are microarchitecture-dependent.
+  - If event encoding/open fails, update:
+    - `const int N_SLICE = 26;` (number of CHA/LLC slices)
+    - `names[]` event strings (e.g., `icx_unc_cha%d::UNC_CHA_LLC_LOOKUP:DATA_READ_MISS`)
+  - `tools/libpfm/examples/event_info.txt` is generated during setup (`scripts/1_setup.sh` / `scripts/_install_pfmlib.sh`); use it to find the right CHA PMU/event name.
+  - After updating, rebuild:
+    ```bash
+    cd /usr/src/sepia/OSDI_26_artifact/fig5
+    g++ -O3 -o ./bin/slice_map_extractor.bin ./code/slice_map_extractor.cpp \
+        -I./tools/libpfm/include \
+        ./tools/libpfm/lib/libpfm.a
+    ```
+
 - restore kernel patch on `192.168.10.213`
   ```bash
   cd /usr/src/sepia/OSDI_26_artifact/kernel_patch/default
