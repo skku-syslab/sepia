@@ -76,11 +76,11 @@ make INSTALL_MOD_STRIP=1 modules_install
 make install
 ```
 ### 4. Build and Install the Sepia Kernel
-The Sepia kernel implements the color-aware page allocator within the mm/ directory and integrates it with the NIC driver.
+The Sepia kernel implements the color-aware page allocator within the `mm/` directory and integrates it with the NIC driver.
 
 #### 4.0 Set `PAGE_GROUP` (system-dependent)
 
-Sepia uses page coloring based on LLC set-index bits that do not overlap with the 4KiB page offset. The number of usable colors (page groups) depends on the CPU's LLC configuration, so you may need to update `PAGE_GROUP` before building the Sepia kernel.
+Sepia uses page coloring based on LLC set-index bits that do not overlap with the 4KB page offset. The number of usable colors (page groups) depends on the CPU's LLC configuration, so you may need to update `PAGE_GROUP` before building the Sepia kernel.
 
 - `PAGE_GROUP` is defined in `kernel_patch/sepia/sepia_page_pool.h`.
 - Run `arch_scripts/print_llc_configuration.py` on your system and use the printed `Page Groups` value:
@@ -102,12 +102,12 @@ Sepia uses page coloring based on LLC set-index bits that do not overlap with th
    ```
    In this case, set `#define PAGE_GROUP 64`.
 
-Note: With 4KiB pages and 64B cache lines, `Page Groups = (Sets per Slice) / 64`.
+Note: With 4KB pages and 64B cache lines, `Page Groups = (Sets per Slice) / 64`.
 
-Note: Sepia currently assumes a fixed 16MiB page pool per CPU.
+Note: Sepia currently assumes a fixed 16MB page pool per CPU.
 
-If `PAGE_GROUP` changes and you still want to keep the same 16MiB pool size, update `PAGES_PER_GROUP` in `kernel_patch/sepia/sepia_page_pool.h` accordingly:
-`PAGES_PER_GROUP = (16MiB / 4KiB) / PAGE_GROUP = 4096 / PAGE_GROUP`
+If `PAGE_GROUP` changes and you still want to keep the same 16MB pool size, update `PAGES_PER_GROUP` in `kernel_patch/sepia/sepia_page_pool.h` accordingly:
+`PAGES_PER_GROUP = (16MB / 4KB) / PAGE_GROUP = 4096 / PAGE_GROUP`
 Examples:
 - `PAGE_GROUP=32` -> `PAGES_PER_GROUP=128`
 - `PAGE_GROUP=64` -> `PAGES_PER_GROUP=64`
@@ -169,18 +169,18 @@ Modify /etc/default/grub on both machines to select the target kernel for experi
 ```bash
 vi /etc/default/grub
 ```
-- **Option A: Sepia Kernel (Evaluation)**
+- **Option A: Sepia kernel**
 
-Sepia requires CMA reservation to manage colored pages. We reserve 1GB on NUMA node 0 for maximum stability and performance.
+Sepia requires CMA reservation to manage colored pages. We reserve 1GB on the DDIO-enabled NUMA node for maximum stability and performance.
 
-Note: Although 288MB is the minimum for 18 cores, 1GB ensures sufficient headroom for the system.
+Note: In our system, the Sepia page pools use 288MB (16MB × 18 cores) in the DDIO-enabled NUMA node 0, so 1GB provides sufficient headroom.
 
 ```bash
 GRUB_DEFAULT="1>Ubuntu, with Linux 6.6.41-sepia"
 GRUB_CMDLINE_LINUX_DEFAULT="numa_cma=0:1G"
 ```
 
-- **Option B: Default Kernel (Baseline)**
+- **Option B: Default kernel (baseline)**
 Standard configuration without CMA reservation.
 ```bash
 GRUB_DEFAULT="1>Ubuntu, with Linux 6.6.41-default"
