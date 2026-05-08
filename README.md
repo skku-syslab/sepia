@@ -305,4 +305,4 @@ This section validates that both kernels boot correctly and run the same toy wor
    ```
 
 
-**To continue the artifact evaluation:** please go to OSDI_26_artifact/
+**To continue the artifact evaluation:** please go to "[OSDI_26_artifact/](https://github.com/skku-syslab/sepia/tree/main/OSDI_26_artifact)".
