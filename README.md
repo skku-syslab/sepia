@@ -107,7 +107,7 @@ Note: With 4KB pages and 64B cache lines, `Page Groups = (Sets per Slice) / 64`.
 Note: Sepia currently assumes a fixed 16MB page pool per CPU.
 
 If `PAGE_GROUP` changes and you still want to keep the same 16MB pool size, update `PAGES_PER_GROUP` in `kernel_patch/sepia/sepia_page_pool.h` accordingly:
-`PAGES_PER_GROUP = (16MB / 4KB) / PAGE_GROUP = 4096 / PAGE_GROUP`  
+`PAGES_PER_GROUP = (16MB / 4KB) / PAGE_GROUP = 4096 / PAGE_GROUP`.  
 Examples:
 - `PAGE_GROUP=32` -> `PAGES_PER_GROUP=128`
 - `PAGE_GROUP=64` -> `PAGES_PER_GROUP=64`
@@ -125,7 +125,8 @@ Examples:
       lscpu -e=cpu,node | awk 'NR>1 {cnt[$2]++} END {for (n in cnt) print "NUMA node", n ":", cnt[n], "CPUs"}'
       ```
 - **NIC interface name**
-  - We use `ens2np0` as the default NIC interface name in our setup. If your interface name is different, please update it in:   
+  - We use `ens2np0` as the default NIC interface name in our setup.
+  - If your interface name is different, please update it in:   
    `/usr/src/sepia/kernel_patch/sepia/en_main.c` (`SEPIA_NETDEV_NAME`)  
    `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh` (`IFACE`)  
   - The kernel-side Sepia initialization path checks `SEPIA_NETDEV_NAME`, so it must match your NIC interface name. Also, our artifact scripts read `IFACE` from `common_env.sh`, so script-side NIC interface changes are managed in one place.
