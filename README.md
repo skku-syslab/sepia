@@ -174,16 +174,14 @@ vi /etc/default/grub
 
 Sepia requires CMA reservation to manage colored pages. We reserve 1GB on the DDIO-enabled NUMA node for maximum stability and performance.
 
-Note: In our system, the Sepia page pools use 288MB (16MB × 18 cores) in the DDIO-enabled NUMA node 0, so 1GB provides sufficient headroom.
+Note: In our system, the Sepia page pools use 288MB (16MB × 18 cores) in the DDIO-enabled NUMA **node 0**, so 1GB provides sufficient headroom.
 
 ```bash
 GRUB_DEFAULT="1>Ubuntu, with Linux 6.6.41-sepia"
 GRUB_CMDLINE_LINUX_DEFAULT="numa_cma=0:1G"
 ```
 
-- **Option B: Default kernel (baseline)**
-
-Standard configuration without CMA reservation.
+- **Option B: Default kernel (baseline)**: Standard configuration without CMA reservation.
 ```bash
 GRUB_DEFAULT="1>Ubuntu, with Linux 6.6.41-default"
 GRUB_CMDLINE_LINUX_DEFAULT=""
