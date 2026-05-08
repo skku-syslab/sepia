@@ -125,12 +125,9 @@ Examples:
       lscpu -e=cpu,node | awk 'NR>1 {cnt[$2]++} END {for (n in cnt) print "NUMA node", n ":", cnt[n], "CPUs"}'
       ```
 - **NIC interface name**
-  - We use `ens2np0` as the default NIC interface name in our setup.
-  - If your interface name is different, please update it in:   
-   `/usr/src/sepia/kernel_patch/sepia/en_main.c` (`SEPIA_NETDEV_NAME`)  
-   `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh` (`IFACE`)  
-  - The kernel-side Sepia initialization path checks `SEPIA_NETDEV_NAME`, so it must match your NIC interface name. Also, our artifact scripts read `IFACE` from `common_env.sh`, so script-side NIC interface changes are managed in one place.
-
+  - We use `ens2np0` as the default NIC interface name in our servers.
+  - If your interface name is different, please update it in: `/usr/src/sepia/kernel_patch/sepia/en_main.c` (`SEPIA_NETDEV_NAME`)  
+  - The kernel-side Sepia initialization path checks `SEPIA_NETDEV_NAME`, so it must match your NIC interface name.
 
 
 #### 4.2 Apply Sepia patches and build
