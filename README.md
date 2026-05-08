@@ -174,7 +174,7 @@ vi /etc/default/grub
 
 Sepia requires CMA reservation to manage colored pages. We reserve 1GB on the DDIO-enabled NUMA node for maximum stability and performance.
 
-Note: In our system, the Sepia page pools use 288MB (16MB × 18 cores) in the DDIO-enabled NUMA **node 0**, so 1GB provides sufficient headroom.
+Note: In our system, the Sepia page pools use 288MB (16MB × 18 cores) in the DDIO-enabled NUMA **node 0**, so 1GB provides sufficient headroom (node number:cma size).
 
 ```bash
 GRUB_DEFAULT="1>Ubuntu, with Linux 6.6.41-sepia"
@@ -208,9 +208,9 @@ GRUB_CMDLINE_LINUX_DEFAULT=""
 
 ## 2. Configure Passwordless SSH Between Two Machines
 
-Many experiment scripts launch client-side commands from the server via `ssh`.
-Without passwordless SSH, remote commands can block on password prompts and break automation.
-Set up passwordless SSH first so one server-side script can orchestrate both machines end-to-end.
+Many experiment scripts use `ssh` to run client-side commands from the server.
+Without passwordless SSH, remote commands may block on password prompts and break automation.
+Set up passwordless SSH first so that server-side scripts can orchestrate both machines end-to-end.
 
 Assume:
 - `<server_ip>` = server (runs orchestration scripts)
@@ -287,13 +287,13 @@ This section validates that both kernels boot correctly and run the same toy wor
    ./run_experiment.sh
    ```
 ### 3.2 Sepia kernel
-1. Set GRUB to the Sepia kernel preset (numa_cma=0:1G) and reboot.
+1. Set GRUB to the Sepia kernel preset (`numa_cma=0:1G`) and reboot.
 2. Verify the running kernel:
    ```bash
    uname -r
    ```
-   Expected: 6.6.41-sepia.
-3. pre-setup on client(192.168.10.211)
+   Expected: `6.6.41-sepia`.
+3. pre-setup on client(`192.168.10.211`)
    ```
    cd /usr/src/sepia/OSDI_26_artifact/toy_experiment/sepia
    ./sepia_with_no_aRFS.sh
