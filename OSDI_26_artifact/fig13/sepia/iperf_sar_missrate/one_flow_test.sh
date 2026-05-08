@@ -1,8 +1,6 @@
 #!/bin/bash
 
-SSH_USER="${SSH_USER:-changwoo}"
-CLIENT_IP="${CLIENT_IP:-192.168.10.211}"
-SERVER_IP="${SERVER_IP:-192.168.10.213}"
+. /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
 
 taskset -c 0 iperf3 -s --one-off -p 5202 > receiver_iperf_1.log &
 

@@ -11,8 +11,10 @@ sleep 1
 cat /sys/kernel/debug/tracing/trace_pipe > temp/mlx5_trace.log &
 TRACE_PID=$!
 
+. /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
+
 taskset -c 0 iperf3 -s --one-off -p 5202 > temp/receiver_iperf_1.log &
-ssh changwoo@192.168.10.211 -tt "iperf3 -c 192.168.10.213 -t 5 -P 1 -p 5202 -Z" > temp/sender_iperf_1.log &
+ssh "${SSH_USER}@${CLIENT_IP}" -tt "iperf3 -c ${SERVER_IP} -t 5 -P 1 -p 5202 -Z" > temp/sender_iperf_1.log &
 
 sleep 1
 sar -P 0 1 4 > temp/receiver_util.log &

@@ -16,8 +16,10 @@ TRACE_PID=$!
 taskset -c 0 iperf3 -s --one-off -p 5202 > temp/receiver_iperf_1.log &
 taskset -c 2 iperf3 -s --one-off -p 5203 > temp/receiver_iperf_2.log &
 
-ssh changwoo@192.168.10.211 -tt "iperf3 -c 192.168.10.213 -t 5 -P 1 -p 5202 -Z" > temp/sender_iperf_1.log &
-ssh changwoo@192.168.10.211 -tt "iperf3 -c 192.168.10.213 -t 5 -P 1 -p 5203 -Z" > temp/sender_iperf_2.log &
+. /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
+
+ssh "${SSH_USER}@${CLIENT_IP}" -tt "iperf3 -c ${SERVER_IP} -t 5 -P 1 -p 5202 -Z" > temp/sender_iperf_1.log &
+ssh "${SSH_USER}@${CLIENT_IP}" -tt "iperf3 -c ${SERVER_IP} -t 5 -P 1 -p 5203 -Z" > temp/sender_iperf_2.log &
 
 sleep 1
 sar -P 0,2 1 4 > temp/receiver_util.log &

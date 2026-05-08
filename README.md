@@ -273,6 +273,27 @@ cat ~/.ssh/id_ed25519.pub | ssh sepia@192.168.10.211 "mkdir -p ~/.ssh && chmod 7
 
 This section validates that both kernels boot correctly and run the same toy workload.
 
+Note: Before running toy experiments, set your environment-specific values in
+`/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh`.
+
+- `SSH_USER`: remote login user for client machine
+- `CLIENT_IP`: client machine IP
+- `SERVER_IP`: server machine IP
+- `IFACE`: NIC interface name (e.g., `ens2np0`)
+```bash
+#!/bin/sh
+# Network interface
+IFACE="${IFACE:-ens2np0}"
+
+# Experiment machine IP addresses and SSH user
+SSH_USER="${SSH_USER:-changwoo}"
+CLIENT_IP="${CLIENT_IP:-192.168.10.211}"
+SERVER_IP="${SERVER_IP:-192.168.10.213}"
+export IFACE
+export SSH_USER
+export CLIENT_IP
+export SERVER_IP
+```
 ### 3.1 Baseline (default kernel)
 1. Set GRUB to the default kernel and reboot.
 2. Verify the running kernel:

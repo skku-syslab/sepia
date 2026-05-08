@@ -12,11 +12,6 @@ ethtool -G $IFACE rx 256 tx 256
 echo 'complete changing descriptor'
 sleep 3
 
-
-SSH_USER="${SSH_USER:-changwoo}"
-CLIENT_IP="${CLIENT_IP:-192.168.10.211}"
-SERVER_IP="${SERVER_IP:-192.168.10.213}"
-
 taskset -c 0 iperf3 -s --one-off -p 5202 > receiver_iperf_1.log &
 
 

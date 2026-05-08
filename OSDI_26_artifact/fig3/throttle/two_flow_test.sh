@@ -1,21 +1,13 @@
 #!/bin/bash
 
-# sysctl -w net.ipv4.tcp_rmem="4096 131072 6291456"
 sysctl -w net.ipv4.tcp_rmem="4096 131072 3145728"
-# sysctl -w net.ipv4.tcp_rmem="4096 131072 2097152"
-# sysctl -w net.ipv4.tcp_rmem="4096 131072 1572864"
-# sysctl -w net.ipv4.tcp_rmem="4096 131072 1258291"
-# sysctl -w net.ipv4.tcp_rmem="4096 131072 1048576"
 sleep 1
 
-SSH_USER="${SSH_USER:-changwoo}"
-CLIENT_IP="${CLIENT_IP:-192.168.10.211}"
-SERVER_IP="${SERVER_IP:-192.168.10.213}"
+. /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
 
 taskset -c 0 iperf3 -s --one-off -p 5202 > receiver_iperf_1.log &
 taskset -c 2 iperf3 -s --one-off -p 5203 > receiver_iperf_2.log &
 
-# iperf3 클라이언트 실행
 ssh "${SSH_USER}@${CLIENT_IP}" -tt "iperf3 -c ${SERVER_IP} -t 30 -P 1 -p 5202 -Z" > sender_iperf_1.log &
 ssh "${SSH_USER}@${CLIENT_IP}" -tt "iperf3 -c ${SERVER_IP} -t 30 -P 1 -p 5203 -Z" > sender_iperf_2.log &
 
