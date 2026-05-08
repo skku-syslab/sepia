@@ -134,9 +134,14 @@ Examples:
       nproc
       lscpu -e=cpu,node | awk 'NR>1 {cnt[$2]++} END {for (n in cnt) print "NUMA node", n ":", cnt[n], "CPUs"}'
       ```
-- **NIC interface name (`/OSDI_26_artifact/scripts/enable_arfs_2.sh`)**
-  - `ens2np0` as the default interface (e.g., `intf=${1:-ens2np0}`).
-  - If your NIC name is different, edit the default interface name in this script.
+- **NIC interface name**
+  - `ens2np0` as the default interface
+  - If your NIC name is different, edit the default interface name in:
+   `/usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh` (`IFACE`)
+   `/usr/src/sepia/kernel_patch/sepia/en_main.c` (`SEPIA_NETDEV_NAME`)
+  - Artifact scripts read `IFACE` from `common_env.sh`, so script-side NIC changes are managed in one place.
+  - The kernel-side Sepia initialization path also checks `SEPIA_NETDEV_NAME`, so this must match your NIC name as well.
+
 
 
 

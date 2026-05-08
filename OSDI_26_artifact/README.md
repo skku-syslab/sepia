@@ -57,7 +57,8 @@ Our hardware configurations used in the paper are:
 - run Figure 4(b),(c)
     - set descriptor 2048 on 192.168.10.211
     ```bash
-    ethtool -G ens2np0 rx 2048 tx 2048
+    . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
+    ethtool -G $IFACE rx 2048 tx 2048
     ```
     - run on 192.168.10.213
     ```bash
@@ -239,7 +240,8 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-default`
   - pre-setup on 192.168.10.211
     ```bash
-    ethtool -G ens2np0 rx 256 tx 256
+    . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
+    ethtool -G $IFACE rx 256 tx 256
     ```
   - run on 192.168.10.213
     ```bash
@@ -301,7 +303,8 @@ Our hardware configurations used in the paper are:
   - kernel: both machines boot with `6.6.41-default`
   - pre-setup on 192.168.10.211
     ```bash
-    ethtool -G ens2np0 rx 256 tx 256
+    . /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
+    ethtool -G $IFACE rx 256 tx 256
     ```
   - run on 192.168.10.213
     ```bash

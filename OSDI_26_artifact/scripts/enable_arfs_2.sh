@@ -1,6 +1,8 @@
 #! /bin/sh
 
-intf=${1:-ens2np0}
+. /usr/src/sepia/OSDI_26_artifact/scripts/common_env.sh
+
+intf=${1:-$IFACE}
 
 ethtool -K $intf ntuple on
 
