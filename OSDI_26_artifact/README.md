@@ -541,12 +541,12 @@ export SERVER_IP
 - Workload: memtier sends SET requests to memcached
 
 - Install dependencies
-  - On client (memcached):
+  - On server (memcached):
     ```bash
     sudo apt update
     sudo apt install -y memcached
     ```
-  - On server (memtier):
+  - On client (memtier):
     ```bash
     sudo apt update
     sudo apt install -y memtier-benchmark
@@ -559,13 +559,13 @@ export SERVER_IP
 
 - Run `default` phase
   - Kernel: both machines boot with `6.6.41-default`
-  - memcached setup (on client):
+  - memcached setup (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/default
     /usr/src/sepia/OSDI_26_artifact/scripts/enable_arfs_2.sh
     ./running_memcached.sh
     ```
-  - Run memtier (on server):
+  - Run memtier (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/default
     ./memcached_100_set.sh
@@ -576,13 +576,13 @@ export SERVER_IP
 
 - Run `Sepia` phase
   - Kernel: both machines boot with `6.6.41-sepia`
-  - memcached setup (on client):
+  - memcached setup (on server):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/sepia
     ./sepia_server.sh
     ./running_memcached.sh
     ```
-  - memtier setup and run it (on server):
+  - memtier setup and run it (on client):
     ```bash
     cd /usr/src/sepia/OSDI_26_artifact/fig19/sepia
     ./sepia_client.sh
