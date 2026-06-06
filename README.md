@@ -129,6 +129,19 @@ Examples:
   - If your interface name is different, please update it in: `/usr/src/sepia/kernel_patch/sepia/en_main.c` (`SEPIA_NETDEV_NAME`)  
   - The kernel-side Sepia initialization path checks `SEPIA_NETDEV_NAME`, so it must match your NIC interface name.
 
+- **DMA Memory Physical Address (`kernel_patch/sepia/sepia_page_pool.c`)**
+  - To guarantee strict reproducibility during the OSDI Artifact Evaluation (AE), the DMA memory base physical address is explicitly hardcoded to `0x101500000ULL`.
+  - If you are testing Sepia in a different hardware environment outside of the AE, this hardcoding might cause memory allocation failures.
+  - You can comment out this physical address adjustment block to allow normal DMA memory allocation:
+
+   ```c
+   // Note: This hardcoded address adjustment is specifically for OSDI AE. 
+   // Feel free to comment out this block for general use cases.
+   // phys_addr_t target_phys_addr = 0x101500000ULL;
+   // phys_addr_t current_phys_addr = virt_to_phys(base_vaddr);
+   // ...
+   ```
+
 
 #### 4.2 Apply Sepia patches and build
 After setting `PAGE_GROUP`, apply the Sepia implementation and build/install the kernel as follows.
