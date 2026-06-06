@@ -97,8 +97,9 @@ void sepia_init(struct device* dev, int numa_id)
 
 	void *base_vaddr = dma_memory;   
 	dma_addr_t base_dma = dma_handle;
-	
-	// adjust the target physical address to start from 0x101500000
+
+	// Note: This hardcoded address adjustment is specifically for OSDI AE. 
+	// Feel free to comment out this block for general use cases.
 	phys_addr_t target_phys_addr = 0x101500000ULL;
 	phys_addr_t current_phys_addr = virt_to_phys(base_vaddr);
 	
@@ -109,6 +110,7 @@ void sepia_init(struct device* dev, int numa_id)
 		printk("NUMA %d: Adjusted base addresses - offset: 0x%lx, new phys addr: 0x%llx\n", 
 			   numa_id, offset, (unsigned long long)virt_to_phys(base_vaddr));
 	}
+	// ...
 	
 	sepia_page_list->memory_start = virt_to_phys(base_vaddr);
 	sepia_page_list->memory_end = virt_to_phys(base_vaddr + total_size);
